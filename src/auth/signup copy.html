@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up - UDM Buddy</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/src/assets/css/styles.css" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <h2 style="display: flex; align-items: center;">
+      <img src="/src/assets/imgs/dm.png" alt="UDM Logo" style="width: 45px; height: auto; margin-right: 10px;">
+      UDM Buddy
+    </h2>
+    
+    </div>
+    <div class="navbar-links">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/src/auth/signin.html">Sign In</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Sign Up Form -->
+  <div class="signup-container">
+    <form id="signupForm">
+      <h2>Sign Up</h2>
+
+      <label for="signupName">Full Name:</label>
+      <input type="text" id="signupName" placeholder="Enter your full name" required>
+
+      <label for="signupCourse">Course:</label>
+      <input type="text" id="signupCourse" placeholder="Enter your course" required>
+
+      <label for="signupYear">Year:</label>
+      <select id="signupYear" class="styled-select" required>
+        <option value="">Select Year</option>
+        <option value="1st Year">1st Year</option>
+        <option value="2nd Year">2nd Year</option>
+        <option value="3rd Year">3rd Year</option>
+        <option value="4th Year">4th Year</option>
+      </select>
+
+      <label for="signupEmail">Email:</label>
+      <input type="email" id="signupEmail" placeholder="Enter your email" required>
+
+      <label for="signupPassword">Password:</label>
+      <input type="password" id="signupPassword" placeholder="Create a password" required>
+
+      <button type="submit">Register</button>
+    </form>
+  </div>
+
+  
+  <script>
+    const signupForm = document.getElementById('signupForm');
+    if (signupForm) {
+      signupForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const fullName = document.getElementById('signupName').value;
+        const course = document.getElementById('signupCourse').value;
+        const year = document.getElementById('signupYear').value;
+        const email = document.getElementById('signupEmail').value;
+        const password = document.getElementById('signupPassword').value;
+
+        // Create user object and save to localStorage
+        const user = { fullName, course, year, email, password };
+        localStorage.setItem('user', JSON.stringify(user));
+
+        alert('Sign up successful! You can now sign in.');
+        window.location.href = '/src/auth/signin.html'; // Redirect to sign-in page
+      });
+    }
+  </script>
+
+</body>
+</html>
+

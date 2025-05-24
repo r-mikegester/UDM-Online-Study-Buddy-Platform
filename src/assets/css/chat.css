@@ -1,0 +1,42 @@
+/* chat.css */
+body {
+    font-family: sans-serif;
+    background: #f1f1f1;
+  }
+  
+  .content.section {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+  }
+  
+  .messages {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 10px;
+    background: #fafafa;
+  }
+  
+  .message {
+    margin-bottom: 10px;
+  }
+  
+  #chat-form {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  #chat-form input[type="text"] {
+    flex: 1;
+    padding: 8px;
+  }
+  
+  #chat-form button {
+    padding: 8px 16px;
+  }
+  
