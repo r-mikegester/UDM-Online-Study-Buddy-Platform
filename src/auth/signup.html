@@ -8,7 +8,6 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-
   <link rel="icon" href="/src/assets/imgs/dm.png" />
 </head>
 
@@ -22,203 +21,229 @@
         <span class="text-xl font-bold text-[#daa92b]">UDM Buddy</span>
       </div>
       <ul class="flex space-x-6 text-sm font-medium">
-        <li><a href="/" class=" transition">Home</a></li>
-        <li><a href="/src/auth/signin.html" class=" transition">Sign In</a></li>
-        <li><a href="/src/auth/signup.html" class=" text-[#daa92b] hover:text-indigo-500 transition">Sign Up</a></li>
+        <li><a href="/" class="transition">Home</a></li>
+        <li><a href="/src/auth/signin.html" class="transition">Sign In</a></li>
+        <li><a href="/src/auth/signup.html" class="text-[#daa92b] hover:text-indigo-500 transition">Sign Up</a></li>
       </ul>
     </div>
   </nav>
 
-  <section class="">
+  <section>
     <div class="container flex items-center justify-center h-full px-6 mx-auto">
-      <form id="signupForm" class="w-full max-w-md">
+      <form id="signupForm" class="w-full max-w-3xl">
 
         <div class="flex items-center justify-center mt-6">
           <a href="/src/auth/signin.html"
             class="w-1/3 pb-4 font-medium text-center capitalize border-b border-[#daa92b]">
             sign in
           </a>
-
           <a href="/src/auth/signup.html"
             class="w-1/3 pb-4 font-medium text-center text-gray-800 capitalize border-b-4 border-[#daa92b] ">
             sign up
           </a>
         </div>
 
-        <div class="relative flex items-center mt-6">
-          <span class="absolute">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mx-3 text-[#daa92b]" width="24" height="24"
-              viewBox="0 0 24 24">
-              <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5">
-                <path
-                  d="M16.137 4.728c-1.546-1.545-2.318-2.318-3.321-2.605c-1.003-.288-2.068-.042-4.197.45l-1.228.283c-1.792.413-2.688.62-3.302 1.233S3.27 5.6 2.856 7.391l-.284 1.228c-.491 2.13-.737 3.194-.45 4.197c.288 1.003 1.061 1.775 2.606 3.32l1.83 1.83C9.248 20.657 10.592 22 12.262 22c1.671 0 3.015-1.344 5.704-4.033c2.69-2.69 4.034-4.034 4.034-5.705c0-1.342-.868-2.474-2.604-4.262" />
-                <path d="M8.607 10.879a2 2 0 1 0-2-2m4.935 9.621l1-1m5.979-5.98L15 15.043" />
-              </g>
-            </svg>
-          </span>
-
-          <input type="text" id="signupName"
-            class="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:text-gray-300 dark:border-[#daa92b] focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-            placeholder="Full Name">
-        </div>
-        <div class="relative flex items-center mt-6">
-          <span class="absolute">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mx-3 text-[#daa92b]" width="24" height="24"
-              viewBox="0 0 24 24">
-              <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-                <path
-                  d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0zM22 10v6" />
-                <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" />
-              </g>
-            </svg>
-          </span>
-
-          <input type="text" id="signupCourse"
-            class="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:text-gray-300 dark:border-[#daa92b] focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-            placeholder="Course">
-        </div>
-
-        <div class="relative flex items-center mt-6">
-          <span class="absolute">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mx-3 text-[#daa92b]" width="24" height="24"
-              viewBox="0 0 24 24">
-              <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm12-4v4M8 3v4m-4 4h16m-9 4h1m0 0v3" />
-            </svg>
-          </span>
-
-          <select id="signupYear"
-            class="styled-select block w-full py-3  bg-white border rounded-lg px-11 text-gray-400 dark:border-[#daa92b] focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 "
-            required>
-            <option value="" class="hover:bg-[#daa92b]">Select Year</option>
-            <option value="1st Year" class="text-gray-400">1st Year</option>
-            <option value="2nd Year" class="text-gray-400">2nd Year</option>
-            <option value="3rd Year" class="text-gray-400">3rd Year</option>
-            <option value="4th Year" class="text-gray-400">4th Year</option>
-          </select>
-
+        <div class="flex space-x-3 w-full items-center justify-center mt-6">
+          <!-- New Student ID Field -->
+          <div class="relative flex items-center w-full">
+            <span class="absolute">
+              <!-- Icon representing an ID -->
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mx-3 text-[#daa92b]" width="24" height="24"
+                viewBox="0 0 24 24">
+                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                  color="currentColor">
+                  <path
+                    d="M8.5 18c1.813-1.954 5.167-2.046 7 0m-1.56-6c0 1.105-.871 2-1.947 2c-1.075 0-1.947-.895-1.947-2s.872-2 1.947-2s1.948.895 1.948 2" />
+                  <path
+                    d="M9.5 4.002c-2.644.01-4.059.102-4.975.97C3.5 5.943 3.5 7.506 3.5 10.632v4.737c0 3.126 0 4.69 1.025 5.66c1.025.972 2.675.972 5.975.972h3c3.3 0 4.95 0 5.975-.971c1.025-.972 1.025-2.535 1.025-5.66v-4.738c0-3.126 0-4.689-1.025-5.66c-.916-.868-2.33-.96-4.975-.97" />
+                  <path
+                    d="M9.772 3.632c.096-.415.144-.623.236-.792a1.64 1.64 0 0 1 1.083-.793C11.294 2 11.53 2 12 2s.706 0 .909.047a1.64 1.64 0 0 1 1.083.793c.092.17.14.377.236.792l.083.36c.17.735.255 1.103.127 1.386a1.03 1.03 0 0 1-.407.451C13.75 6 13.332 6 12.498 6h-.996c-.834 0-1.252 0-1.533-.17a1.03 1.03 0 0 1-.407-.452c-.128-.283-.043-.65.127-1.386z" />
+                </g>
+              </svg>
+            </span>
+            <input type="number" id="signupStudentId"
+              class="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:text-gray-300 dark:border-[#daa92b] focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+              placeholder="Student ID" required>
+          </div>
+          <!-- Full Name Field -->
+          <div class="relative flex items-center w-full">
+            <span class="absolute">
+              <svg xmlns="http://www.w3.org/2000/svg"  class="w-6 h-6 mx-3 text-[#daa92b]" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="1.5" d="M3 7V5h14v2m-7-2v14m0 0h2m-2 0H8m5-5v-2h8v2m-4-2v7m0 0h-1.5m1.5 0h1.5" />
+              </svg>
+            </span>
+            <input type="text" id="signupName"
+              class="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:text-gray-300 dark:border-[#daa92b] focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+              placeholder="Full Name">
+          </div>
         </div>
 
-        <div class="relative flex items-center mt-6">
-          <span class="absolute">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mx-3 text-[#daa92b]" fill="none" viewBox="0 0 24 24"
-              stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-            </svg>
-          </span>
+        <div class="flex space-x-3 w-full items-center justify-center mt-6">
 
-          <input type="email" id="signupEmail"
-            class="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:text-gray-300 dark:border-[#daa92b] focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-            placeholder="Email address">
+          <!-- Course Field -->
+          <div class="relative flex items-center w-full">
+            <span class="absolute">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mx-3 text-[#daa92b]" width="24" height="24"
+                viewBox="0 0 24 24">
+                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                  <path
+                    d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0zM22 10v6" />
+                  <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" />
+                </g>
+              </svg>
+            </span>
+            <input type="text" id="signupCourse"
+              class="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:text-gray-300 dark:border-[#daa92b] focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+              placeholder="Course">
+          </div>
+
+          <!-- Year Field -->
+          <div class="relative flex items-center w-full mr-10">
+            <span class="absolute">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mx-3 text-[#daa92b]" width="24" height="24"
+                viewBox="0 0 24 24">
+                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm12-4v4M8 3v4m-4 4h16m-9 4h1m0 0v3" />
+              </svg>
+            </span>
+            <select id="signupYear"
+              class="styled-select block w-full py-3 bg-white border rounded-lg px-11 text-gray-400 dark:border-[#daa92b] focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+              required>
+              <option value="" class="hover:bg-[#daa92b]">Select Year</option>
+              <option value="1st Year" class="text-gray-400">1st Year</option>
+              <option value="2nd Year" class="text-gray-400">2nd Year</option>
+              <option value="3rd Year" class="text-gray-400">3rd Year</option>
+              <option value="4th Year" class="text-gray-400">4th Year</option>
+            </select>
+          </div>
         </div>
 
-        <div class="relative flex items-center mt-4">
-          <span class="absolute">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mx-3 text-[#daa92b]" fill="none" viewBox="0 0 24 24"
-              stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-            </svg>
-          </span>
+        <div class="flex space-x-3 w-full items-center justify-center mt-6">
+          <!-- Email Field -->
+          <div class="relative flex items-center w-full">
+            <span class="absolute">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mx-3 text-[#daa92b]" fill="none"
+                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </span>
+            <input type="email" id="signupEmail"
+              class="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:text-gray-300 dark:border-[#daa92b] focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+              placeholder="Email address">
+          </div>
 
-          <input type="password" id="signupPassword"
-            class="block w-full px-10 py-3 text-gray-700 text-[#daa92b] border rounded-lg border-[#daa92b] focus:border-[#daa92b] focus:ring-[#daa92b] focus:outline-none focus:ring focus:ring-opacity-40"
-            placeholder="Create Password">
+          <!-- Password Field -->
+          <div class="relative flex items-center w-full">
+            <span class="absolute">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mx-3 text-[#daa92b]" fill="none"
+                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+            </span>
+            <input type="password" id="signupPassword"
+              class="block w-full px-10 py-3 text-gray-700 text-[#daa92b] border rounded-lg border-[#daa92b] focus:border-[#daa92b] focus:ring-[#daa92b] focus:outline-none focus:ring focus:ring-opacity-40"
+              placeholder="Create Password">
+          </div>
         </div>
 
-        <div class="mt-6">
+        <div class="mt-6 flex items-center justify-center">
           <button type="submit"
-            class="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-[#daa92b] rounded-lg hover:bg-[#aa8320] focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+            class="w-96 px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-[#daa92b] rounded-lg hover:bg-[#aa8320] focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
             Sign Up
           </button>
-
-          <div class="mt-6 text-center ">
+          
+        </div>
+        <div class="mt-6 text-center">
             <a href="/src/auth/signin.html" class="text-sm text-blue-500 hover:underline">
               Already have an account?
             </a>
           </div>
-        </div>
       </form>
     </div>
   </section>
-
-
-
 
   <!-- Footer -->
   <footer class="bg-white absolute bottom-0 w-full border-t mt-20 py-6 text-center text-gray-500 text-sm">
     &copy; 2025 UDM Buddy. All rights reserved.
   </footer>
+
   <script>
-  // Toast function using Toastify
-  function toast(message, type) {
-    Toastify({
-      text: message,
-      duration: 1000, // duration in milliseconds
-      close: true,
-      gravity: "top", // position: top or bottom
-      position: "right",
-      backgroundColor: type === "success" ? "green" : "red",
-      stopOnFocus: true, // Prevents dismissal while hovering over the toast
-    }).showToast();
-  }
+    // Toast function using Toastify
+    function toast(message, type) {
+      Toastify({
+        text: message,
+        duration: 1000, // duration in milliseconds
+        close: true,
+        gravity: "top", // position: top or bottom
+        position: "right",
+        backgroundColor: type === "success" ? "green" : "red",
+        stopOnFocus: true, // Prevents dismissal while hovering over the toast
+      }).showToast();
+    }
 
-  // Ensure the DOM is loaded before accessing elements
-  document.addEventListener("DOMContentLoaded", function () {
-    const signupForm = document.getElementById("signupForm");
-    if (!signupForm) return;
+    // Ensure the DOM is loaded before accessing elements
+    document.addEventListener("DOMContentLoaded", function () {
+      const signupForm = document.getElementById("signupForm");
+      if (!signupForm) return;
 
-    signupForm.addEventListener("submit", function (e) {
-      e.preventDefault();
+      signupForm.addEventListener("submit", function (e) {
+        e.preventDefault();
 
-      // Retrieve the form input values (using trim to remove any extra spaces)
-      const fullName = document.getElementById("signupName").value.trim();
-      const course = document.getElementById("signupCourse").value.trim();
-      const year = document.getElementById("signupYear").value.trim();
-      const email = document.getElementById("signupEmail").value.trim();
-      const password = document.getElementById("signupPassword").value.trim();
+        // Retrieve form input values (using trim to remove any extra spaces)
+        const fullName = document.getElementById("signupName").value.trim();
+        const studentId = document.getElementById("signupStudentId").value.trim();
+        const course = document.getElementById("signupCourse").value.trim();
+        const year = document.getElementById("signupYear").value.trim();
+        const email = document.getElementById("signupEmail").value.trim();
+        const password = document.getElementById("signupPassword").value.trim();
 
-      // Validate that all fields are filled
-      if (!fullName || !course || !year || !email || !password) {
-        toast("All fields are required!", "error");
-        return;
-      }
+        // Validate that all fields are filled
+        if (!fullName || !studentId || !course || !year || !email || !password) {
+          toast("All fields are required!", "error");
+          return;
+        }
 
-      // Retrieve users array from localStorage (or initialize an empty array if not present)
-      const users = JSON.parse(localStorage.getItem("users")) || [];
+        // Retrieve users array from localStorage (or initialize an empty array if not present)
+        const users = JSON.parse(localStorage.getItem("users")) || [];
 
-      // Check for duplicate email in the users array
-      if (users.some(user => user.email === email)) {
-        toast("Email already exists!", "error");
-        return;
-      }
+        // Check for duplicate Student ID and Email
+        if (users.some(user => user.id === Number(studentId))) {
+          toast("Student ID already exists!", "error");
+          return;
+        }
+        if (users.some(user => user.email === email)) {
+          toast("Email already exists!", "error");
+          return;
+        }
 
-      // Create a new user object
-      const newUser = {
-        id: Date.now(), // Unique ID for the user
-        fullName,
-        course,
-        year,
-        email,
-        password,
-        role: "student"
-      };
+        // Create a new user object using the provided studentId as the unique identifier
+        const newUser = {
+          id: Number(studentId),
+          fullName,
+          course,
+          year,
+          email,
+          password,
+          role: "student"
+        };
 
-      // Add the new user to the users array and update localStorage
-      users.push(newUser);
-      localStorage.setItem("users", JSON.stringify(users));
+        // Add the new user to the users array and update localStorage
+        users.push(newUser);
+        localStorage.setItem("users", JSON.stringify(users));
 
-      // Notify the user of a successful account creation
-      toast("Account created successfully!", "success");
+        // Notify the user of a successful account creation
+        toast("Account created successfully!", "success");
 
-      // Redirect to the user dashboard after a short delay, giving time for the toast to show
-      setTimeout(() => {
-        window.location.href = "/src/users/client.html#Home";
-      }, 1000);
+        // Redirect to the student dashboard after a short delay, giving time for the toast to show
+        setTimeout(() => {
+          window.location.href = "/src/users/client.html#Home";
+        }, 1000);
+      });
     });
-  });
-</script>
+  </script>
 </body>
 
 </html>
