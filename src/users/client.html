@@ -489,6 +489,19 @@
     </main>
   </div>
   <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+    if (!currentUser || currentUser.role !== "User") {
+      alert("You must be signed in to view this page.");
+      window.location.href = "/src/auth/signin.html";
+    } else {
+      document.getElementById("userName").textContent = currentUser.name || "User";
+    }
+  });
+</script>
+
+  <script>
     document.addEventListener("DOMContentLoaded", function () {
       const events = JSON.parse(localStorage.getItem('events') || '[]');
       const container = document.getElementById('eventsList');
@@ -647,7 +660,41 @@
       chatMessages.scrollTop = chatMessages.scrollHeight;
     }
   </script>
+<script type="module">
+  document.addEventListener("DOMContentLoaded", () => {
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
+    if (!currentUser) {
+      alert("You must be logged in to view this page.");
+      window.location.href = "/src/auth/signin.html";
+      return;
+    }
+
+    // Optional: Check role (only for admin.html)
+    if (window.location.pathname.includes("admin.html") && currentUser.role !== "admin") {
+      alert("Unauthorized. Admins only.");
+      window.location.href = "/src/auth/signin.html";
+      return;
+    }
+
+    // Optional: Display user name or email somewhere
+    const userInfoEl = document.getElementById("userInfo");
+    if (userInfoEl) {
+      userInfoEl.textContent = `Welcome, ${currentUser.name} (${currentUser.role})`;
+    }
+
+    // Optional: Logout button
+    const logoutBtn = document.getElementById("logoutBtn");
+    if (logoutBtn) {
+      logoutBtn.addEventListener("click", () => {
+        localStorage.removeItem("currentUser");
+        firebase.auth().signOut().then(() => {
+          window.location.href = "/src/auth/signin.html";
+        });
+      });
+    }
+  });
+</script>
 </body>
 
 </html>

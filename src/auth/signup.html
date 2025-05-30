@@ -48,7 +48,7 @@
           </span>
 
           <input type="text" id="signupName"
-            class="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:text-gray-300 dark:border-[#daa92b] focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+            class="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11  dark:border-[#daa92b] focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
             placeholder="Full Name">
         </div>
         <div class="relative flex items-center mt-6">
@@ -57,7 +57,7 @@
           </span>
 
           <input type="text" id="signupCourse"
-            class="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:text-gray-300 dark:border-[#daa92b] focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+            class="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11  dark:border-[#daa92b] focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
             placeholder="Course">
         </div>
 
@@ -67,13 +67,13 @@
           </span>
 
           <select id="signupYear"
-            class="styled-select block w-full py-3  bg-white border rounded-lg px-11 text-gray-400 dark:border-[#daa92b] focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 "
+            class="styled-select block w-full py-3  bg-white border rounded-lg px-11 text-gray-700 dark:border-[#daa92b] focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 "
             required>
             <option value="" class="hover:bg-[#daa92b]">Select Year</option>
-            <option value="1st Year" class="text-gray-400">1st Year</option>
-            <option value="2nd Year" class="text-gray-400">2nd Year</option>
-            <option value="3rd Year" class="text-gray-400">3rd Year</option>
-            <option value="4th Year" class="text-gray-400">4th Year</option>
+            <option value="1st Year" class="text-gray-700">1st Year</option>
+            <option value="2nd Year" class="text-gray-700">2nd Year</option>
+            <option value="3rd Year" class="text-gray-700">3rd Year</option>
+            <option value="4th Year" class="text-gray-700">4th Year</option>
           </select>
 
         </div>
@@ -88,7 +88,7 @@
           </span>
 
           <input type="email" id="signupEmail"
-            class="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:text-gray-300 dark:border-[#daa92b] focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+            class="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11  dark:border-[#daa92b] focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
             placeholder="Email address">
         </div>
 
@@ -122,83 +122,13 @@
     </div>
   </section>
 
-
-
-
   <!-- Footer -->
   <footer class="bg-white absolute bottom-0 w-full border-t mt-20 py-6 text-center text-gray-500 text-sm">
     &copy; 2025 UDM Buddy. All rights reserved.
   </footer>
-  <script>
-    const signupForm = document.getElementById('signupForm');
-    if (signupForm) {
-      signupForm.addEventListener('submit', function (e) {
-        e.preventDefault();
 
-        const fullName = document.getElementById('signupName').value;
-        const course = document.getElementById('signupCourse').value;
-        const year = document.getElementById('signupYear').value;
-        const email = document.getElementById('signupEmail').value;
-        const password = document.getElementById('signupPassword').value;
+<script type="module" src="/src/assets/js/signup.js"></script>
 
-        // Create user object and save to localStorage
-        const user = { fullName, course, year, email, password };
-        localStorage.setItem('user', JSON.stringify(user));
-
-        alert('Sign up successful! You can now sign in.');
-        window.location.href = '/src/auth/signin.html'; // Redirect to sign-in page
-      });
-    }
-  </script>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const signupForm = document.getElementById("signupForm");
-  
-      if (!signupForm) return;
-  
-      signupForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-  
-        const fullName = document.getElementById("signupName").value.trim();
-        const course = document.getElementById("signupCourse").value.trim();
-        const year = document.getElementById("signupYear").value.trim();
-        const email = document.getElementById("signupEmail").value.trim();
-        const password = document.getElementById("signupPassword").value.trim();
-  
-        if (!fullName || !course || !year || !email || !password) {
-          alert("All fields are required!");
-          return;
-        }
-  
-        const users = JSON.parse(localStorage.getItem("users")) || [];
-  
-        const alreadyExists = users.some(user => user.email === email);
-        if (alreadyExists) {
-          alert("Email already exists!");
-          return;
-        }
-  
-        const newUser = {
-          id: Date.now(),
-          fullName,
-          course,
-          year,
-          email,
-          password,
-          role: "student"
-        };
-  
-        users.push(newUser);
-        localStorage.setItem("users", JSON.stringify(users));
-  
-        alert("Account created successfully!");
-  
-        // Redirect to dashboard
-        window.location.href = "/src/pages/user.html";
-      });
-    });
-  </script>
 </body>
 
 </html>

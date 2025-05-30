@@ -52,7 +52,7 @@
           </span>
 
           <input type="email" id="loginEmail"
-            class="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:text-gray-300 dark:border-[#daa92b] focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+            class="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 border-[#daa92b] focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
             placeholder="Email address">
         </div>
 
@@ -93,73 +93,8 @@
   <footer class="bg-white absolute bottom-0 w-full border-t mt-20 py-6 text-center text-gray-500 text-sm">
     &copy; 2025 UDM Buddy. All rights reserved.
   </footer>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const loginForm = document.getElementById('loginForm');
-  
-      if (!loginForm) return;
-  
-      loginForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-  
-        const email = document.getElementById('loginEmail').value.trim();
-        const password = document.getElementById('loginPassword').value.trim();
-  
-        // Admin credentials (hardcoded)
-        const adminEmail = "admin@gmail.com";
-        const adminPassword = "6921";
-  
-        // Get current date/time
-        const now = new Date();
-        const loginDate = now.toLocaleDateString();
-        const loginTime = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-  
-        // Function to log history
-        function logUserLogin(name, role) {
-          const newEntry = {
-            name,
-            role,
-            date: loginDate,
-            time: loginTime
-          };
-          const stored = JSON.parse(localStorage.getItem('loginHistory') || '[]');
-          stored.unshift(newEntry);
-          localStorage.setItem('loginHistory', JSON.stringify(stored));
-        }
-  
-        // Admin login check
-        if (email === adminEmail && password === adminPassword) {
-          const adminUser = {
-            name: "Admin",
-            email: adminEmail,
-            role: "admin"
-          };
-          localStorage.setItem("currentUser", JSON.stringify(adminUser));
-  
-          logUserLogin(adminUser.name, "Admin");
-  
-          window.location.href = "/src/pages/admin.html";
-          return;
-        }
-  
-        // Student login check
-        const users = JSON.parse(localStorage.getItem('users')) || [];
-        const foundUser = users.find(user => user.email === email && user.password === password);
-  
-        if (foundUser) {
-          localStorage.setItem("currentUser", JSON.stringify(foundUser));
-  
-          logUserLogin(foundUser.name || foundUser.email, "User");
-  
-          window.location.href = "/src/pages/user.html";
-        } else {
-          alert("Invalid email or password!");
-        }
-      });
-    });
-  </script>
-  
-  
+ <script type="module" src="/src/assets/js/signin.js"></script>
+
 </body>
 
 </html>
