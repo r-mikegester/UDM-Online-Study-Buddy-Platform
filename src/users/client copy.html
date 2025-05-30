@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UDM Student Buddy Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/src/assets/css/styles.css" />
+</head>
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .dashboard {
+    display: flex;
+    width: 100%;
+  }
+
+  .sidebar {
+
+    color: white;
+    width: 250px;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    transition: transform 0.3s ease;
+    z-index: 999;
+  }
+
+  .sidebar nav ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .sidebar nav ul li {
+    margin: 15px 0;
+  }
+
+  .sidebar nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+  }
+
+  .main {
+    padding: 20px;
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .avatar {
+    border-radius: 50%;
+  }
+
+  .hamburger {
+    display: none;
+    font-size: 1.8em;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: #2c3e50;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1000;
+  }
+
+  @media (max-width: 768px) {
+    .sidebar {
+      transform: translateX(-100%);
+    }
+
+    .sidebar.active {
+      transform: translateX(0);
+    }
+
+    .main {
+      margin-left: 0;
+      padding-top: 60px;
+    }
+
+    .hamburger {
+      display: block;
+    }
+  }
+
+  .card-container {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .card {
+    background: #f4f4f4;
+    padding: 1rem;
+    border-radius: 8px;
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .section {
+    margin-top: 2rem;
+  }
+
+  .list {
+    padding-left: 1rem;
+  }
+</style>
+
+<body>
+  <div class="dashboard">
+
+    <aside class="flex flex-col w-64 h-screen z-[9999] px-5 py-8 overflow-y-auto bg-white border-r">
+      <a href="#" class="flex justify-center items-center">
+        <img class="w-auto h-20" src="/src/assets/imgs/dm.png" alt="">
+      </a>
+
+      <div class="flex flex-col justify-between flex-1 mt-6">
+        <nav class="flex-1 -mx-3 space-y-3">
+
+          <a class="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700"
+            href="#Home">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+                <path
+                  d="M6.133 21C4.955 21 4 20.02 4 18.81v-8.802c0-.665.295-1.295.8-1.71l5.867-4.818a2.09 2.09 0 0 1 2.666 0l5.866 4.818c.506.415.801 1.045.801 1.71v8.802c0 1.21-.955 2.19-2.133 2.19z" />
+                <path d="M9.5 21v-5.5a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2V21" />
+              </g>
+            </svg>
+            <span class="mx-2 text-sm font-medium">Home</span>
+          </a>
+          <a class="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700"
+            href="#Lessons">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path fill="currentColor"
+                d="M7.333 5.5a2.25 2.25 0 0 1 2.25-2.25h1.583a2.25 2.25 0 0 1 2.25 2.196c.227-.175.492-.308.786-.387l2.253-.604a2.25 2.25 0 0 1 2.756 1.591L21.93 16.19a2.25 2.25 0 0 1-1.591 2.755l-2.254.604a2.25 2.25 0 0 1-2.756-1.59l-1.912-7.136v6.428a2.25 2.25 0 0 1-2.25 2.25H9.583a2.24 2.24 0 0 1-1.5-.573a2.24 2.24 0 0 1-1.5.573H4.25A2.25 2.25 0 0 1 2 17.25v-9.5A2.25 2.25 0 0 1 4.25 5.5h2.333c.263 0 .516.045.75.128zm0 11.75V7.728A.75.75 0 0 0 6.583 7H4.25a.75.75 0 0 0-.75.75v9.5c0 .414.336.75.75.75h2.333a.75.75 0 0 0 .75-.73zm2.25.75h1.583a.75.75 0 0 0 .75-.75V5.5a.75.75 0 0 0-.75-.75H9.583a.75.75 0 0 0-.75.75v11.77a.75.75 0 0 0 .75.73M14.06 7.427l2.717 10.142a.75.75 0 0 0 .919.53l2.253-.604a.75.75 0 0 0 .53-.918L17.763 6.435a.75.75 0 0 0-.918-.53l-2.254.603a.75.75 0 0 0-.53.919" />
+            </svg>
+            <span class="mx-2 text-sm font-medium">Lessons</span>
+          </a>
+
+          <a class="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700"
+            href="#Events">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                d="M15 4V2m0 2v2m0-2h-4.5M3 10v9a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-9zm0 0V6a2 2 0 0 1 2-2h2m0-2v4m14 4V6a2 2 0 0 0-2-2h-.5" />
+            </svg>
+            <span class="mx-2 text-sm font-medium">Events</span>
+          </a>
+
+          <!-- Continue with the same structure for: Projects, Tasks, Reporting, Users, Settings -->
+
+        </nav>
+
+        <div class=" flex justify-around bg-gray-100 border-2 hover:bg-gray-200 items-center shadow-2xl rounded-2xl ">
+
+          <div class="flex items-center justify-around py-2  space-x-10">
+            <a href="#profile" class="flex items-center gap-x-2 profile">
+
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 28 28">
+                <path fill="currentColor"
+                  d="M21 16a3 3 0 0 1 3 3v.715C24 23.292 19.79 26 14 26S4 23.433 4 19.715V19a3 3 0 0 1 3-3zm0 1.5H7a1.5 1.5 0 0 0-1.493 1.355L5.5 19v.715c0 2.674 3.389 4.785 8.5 4.785c4.926 0 8.355-2.105 8.496-4.624l.004-.161V19a1.5 1.5 0 0 0-1.355-1.493zM14 2a6 6 0 1 1 0 12a6 6 0 0 1 0-12m0 1.5a4.5 4.5 0 1 0 0 9a4.5 4.5 0 0 0 0-9" />
+              </svg>
+              <span class="text-sm font-medium text-gray-700">
+                <h1>Student</h1>
+              </span>
+            </a>
+
+            <a href="/"
+              class="text-gray-500 border-2 bg-gray-300 rounded-xl p-2 transition-colors duration-200 rotate-180 hover:text-blue-500">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5">
+                  <path stroke-linejoin="round" d="M15 12H6m0 0l2 2m-2-2l2-2" />
+                  <path
+                    d="M12 21.983c-1.553-.047-2.48-.22-3.121-.862c-.769-.768-.865-1.946-.877-4.121M16 21.998c2.175-.012 3.353-.108 4.121-.877C21 20.243 21 18.828 21 16V8c0-2.828 0-4.243-.879-5.121C19.243 2 17.828 2 15 2h-1c-2.828 0-4.243 0-5.121.879c-.769.768-.865 1.946-.877 4.121M3 9.5v5c0 2.357 0 3.535.732 4.268S5.643 19.5 8 19.5M3.732 5.232C4.464 4.5 5.643 4.5 8 4.5" />
+                </g>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+
+    <main class="main">
+      <div class="w-full ml-64">
+        <header class="ml-64 topbar flex items-center justify-betweenq bg-white px-2 py-2 ">
+          <h1>Welcome, Student!</h1>
+          <a href="https://discord.gg/dQNRxhDA" target="_blank"
+            class="bg-[#daa92b] shadow-md border p-2 rounded-xl">Enter Study Lobby</a>
+        </header>
+      </div>
+
+
+      <!-- Dashboard -->
+      <section id="Home" class="content section">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 overflow-hidden">
+
+          <!-- New Lessons Card -->
+          <div class="bg-white rounded-2xl shadow p-6 flex flex-col justify-between">
+            <div>
+              <h3 class="text-xl font-bold text-blue-700 mb-2">🆕 New Lessons</h3>
+              <p class="text-gray-600 mb-4">Check out the latest uploaded lessons:</p>
+              <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                <li>Intro to Programming</li>
+                <li>Web Development Basics</li>
+                <li>Data Structures</li>
+              </ul>
+            </div>
+            <div class="mt-6">
+              <a href="#Lessons"
+                class="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                View All Lessons
+              </a>
+            </div>
+          </div>
+
+          <!-- New Events Card -->
+          <div class="bg-white rounded-2xl shadow p-6 flex flex-col justify-between">
+            <div>
+              <h3 class="text-xl font-bold text-purple-700 mb-2">📅 New Events</h3>
+              <p class="text-gray-600 mb-4">Don't miss these upcoming events:</p>
+              <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                <li>Tech Talk: AI & Future</li>
+                <li>Hackathon 2025 Registration</li>
+                <li>Meet Your Mentors</li>
+              </ul>
+            </div>
+            <div class="mt-6">
+              <a href="#Events"
+                class="inline-block bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">
+                View All Events
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+
+
+      <!-- Lessons Section for BSIT -->
+      <section id="Lessons" class=" content section oveflow-hidden ">
+        <div class="flex justify-between w-full">
+          <div>
+            <h2 class="text-2xl font-bold text-left mb-2">📚 BSIT Lessons</h2>
+            <p class="mb-6 text-gray-600">Select your year and semester to view the lessons and recommended books.</p>
+          </div>
+          <div class="flex flex-col justify-center  items-center">
+
+            <div class="flex flex-wrap items-center gap-4 mb-6">
+              <div>
+                <label for="year" class="block text-sm font-medium">Year:</label>
+                <select id="year" onchange="updateLessons()"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                  <option value="">--Select Year--</option>
+                  <option value="1">1st Year</option>
+                  <option value="2">2nd Year</option>
+                  <option value="3">3rd Year</option>
+                  <option value="4">4th Year</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="semester" class="block text-sm font-medium">Semester:</label>
+                <select id="semester" onchange="updateLessons()"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                  <option value="">--Select Semester--</option>
+                  <option value="1">1st Semester</option>
+                  <option value="2">2nd Semester</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="overflow-hidden h-fit">
+          <div id="lessons-display"
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 lg:grid-cols-5 md:grid-cols-4 gap-6 h-full overflow-auto">
+            <!-- Lesson cards will appear here -->
+          </div>
+        </div>
+      </section>
+
+      <section id="Events" class=" section ">
+        <!-- <h2 class="text-2xl font-bold mb-4 text-center">📅 Events</h2> -->
+
+        <div class="flex w-full justify-evenly space-x-6 items-start">
+          <!-- Event Creation Form -->
+
+
+          <!-- Event List -->
+          <div class="w-full">
+            <h3 class="text-xl font-semibold mb-6">Upcoming Events</h3>
+            <div id="eventList" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <!-- Dynamic event cards will appear here -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+
+      <style>
+        .scroll-box {
+          max-height: 500px;
+          overflow-y: scroll;
+          margin-top: 20px;
+          padding-right: 10px;
+          border: 1px solid #ccc;
+          padding: 10px;
+          border-radius: 8px;
+          background: #fafafa;
+        }
+
+        .lesson-card {
+          margin-bottom: 30px;
+          border-bottom: 1px solid #ddd;
+          padding-bottom: 20px;
+        }
+
+        .lesson-card h4 {
+          margin-bottom: 10px;
+        }
+
+        .lesson-card iframe {
+          width: 100%;
+          height: 240px;
+          border-radius: 8px;
+        }
+      </style>
+
+      <script>
+        const eventForm = document.getElementById("eventForm");
+        const eventList = document.getElementById("eventList");
+
+        // Load events from localStorage on page load
+        document.addEventListener("DOMContentLoaded", () => {
+          const events = JSON.parse(localStorage.getItem("events")) || [];
+          events.forEach(displayEvent);
+        });
+
+        // Handle form submission
+        eventForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+
+          const title = document.getElementById("eventTitle").value;
+          const date = document.getElementById("eventDate").value;
+          const description = document.getElementById("eventDescription").value;
+
+          const event = { title, date, description };
+
+          // Save to localStorage
+          const existingEvents = JSON.parse(localStorage.getItem("events")) || [];
+          existingEvents.push(event);
+          localStorage.setItem("events", JSON.stringify(existingEvents));
+
+          // Display new event
+          displayEvent(event);
+
+          // Clear form
+          eventForm.reset();
+        });
+
+        function displayEvent(event) {
+          const card = document.createElement("div");
+          card.className = "bg-white p-4 rounded-lg shadow hover:shadow-lg transition";
+          card.innerHTML = `
+            <h4 class="text-lg font-bold text-blue-700 mb-2">${event.title}</h4>
+            <p class="text-sm text-gray-500 mb-1">📅 ${event.date}</p>
+            <p class="text-gray-700 text-sm">${event.description}</p>
+          `;
+          eventList.appendChild(card);
+        }
+      </script>
+
+
+      <script>
+        const lessonData = {
+          '1-1': Array.from({ length: 10 }, (_, i) => ({
+            title: `1st Year - 1st Sem Topic ${i + 1}`,
+            video: "https://www.youtube.com/embed/Wq8U2aDM3_0",
+            book: "https://example.com/books/sample.pdf"
+          })),
+          '1-2': Array.from({ length: 10 }, (_, i) => ({
+            title: `1st Year - 2nd Sem Topic ${i + 1}`,
+            video: "https://www.youtube.com/embed/eIrMbAQSU34",
+            book: "https://example.com/books/sample.pdf"
+          })),
+          '2-1': Array.from({ length: 10 }, (_, i) => ({
+            title: `2nd Year - 1st Sem Topic ${i + 1}`,
+            video: "https://www.youtube.com/embed/pQN-pnXPaVg",
+            book: "https://example.com/books/sample.pdf"
+          })),
+          '2-2': Array.from({ length: 10 }, (_, i) => ({
+            title: `2nd Year - 2nd Sem Topic ${i + 1}`,
+            video: "https://www.youtube.com/embed/KGkiIBTq0y0",
+            book: "https://example.com/books/sample.pdf"
+          })),
+          '3-1': Array.from({ length: 10 }, (_, i) => ({
+            title: `3rd Year - 1st Sem Topic ${i + 1}`,
+            video: "https://www.youtube.com/embed/Fdf5aTYRW0E",
+            book: "https://example.com/books/sample.pdf"
+          })),
+          '3-2': Array.from({ length: 10 }, (_, i) => ({
+            title: `3rd Year - 2nd Sem Topic ${i + 1}`,
+            video: "https://www.youtube.com/embed/2ePf9rue1Ao",
+            book: "https://example.com/books/sample.pdf"
+          })),
+          '4-1': Array.from({ length: 10 }, (_, i) => ({
+            title: `4th Year - 1st Sem Topic ${i + 1}`,
+            video: "https://www.youtube.com/embed/SJ0W9LJ9RQg",
+            book: "https://example.com/books/sample.pdf"
+          })),
+          '4-2': Array.from({ length: 10 }, (_, i) => ({
+            title: `4th Year - 2nd Sem Topic ${i + 1}`,
+            video: "https://www.youtube.com/embed/vsQ3XJXKD5Y",
+            book: "https://example.com/books/sample.pdf"
+          }))
+        };
+
+        function updateLessons() {
+          const year = document.getElementById("year").value;
+          const sem = document.getElementById("semester").value;
+          const key = `${year}-${sem}`;
+          const display = document.getElementById("lessons-display");
+
+          if (!lessonData[key]) {
+            display.innerHTML = "<p>Please select a valid year and semester.</p>";
+            return;
+          }
+
+          display.innerHTML = lessonData[key].map(lesson => `
+      <div class="lesson-card">
+        <h4>${lesson.title}</h4>
+        <iframe src="${lesson.video}" frameborder="0" allowfullscreen></iframe>
+        <p><strong>📘 Recommended Book:</strong> <a href="${lesson.book}" target="_blank">Download / View</a></p>
+      </div>
+    `).join('');
+        }
+      </script>
+
+      <!-- Events -->
+      <section id="#Events" class="content section">
+        <h2>📅 Events</h2>
+        <p>Stay updated with student events and meetups on and off campus!</p>
+
+        <h2 class="text-2xl font-semibold mb-4">Upcoming Events</h2>
+        <div id="eventsList" class="space-y-4">
+          <!-- Events will load here -->
+        </div>
+      </section>
+
+      <section id="profile" class="content section p-6">
+        <h2 class="text-2xl font-bold mb-4">👤 My Profile</h2>
+
+        <div class="flex items-center gap-6 bg-white p-6 rounded-lg shadow max-w-xl mx-auto">
+          <!-- Avatar -->
+          <img id="userAvatar" class="w-24 h-24 rounded-full border-2 border-gray-300" alt="Avatar" />
+
+          <!-- Info -->
+          <div>
+            <p><strong>Name:</strong> <span id="profileName">Loading...</span></p>
+            <p><strong>Program:</strong> <span id="profileCourse">Loading...</span></p>
+            <p><strong>Year:</strong> <span id="profileYear">Loading...</span></p>
+            <p><strong>Email:</strong> <span id="profileEmail">Loading...</span></p>
+          </div>
+        </div>
+      </section>
+
+
+
+
+
+    </main>
+  </div>
+  <script type="module" src="/src/assets/js/auth/auth-check.js"></script>
+  <script type="module" src="/src/assets/js/profile/profile.js"></script>
+  <script type="module" src="/src/assets/js/events/events.js"></script>
+  <script type="module" src="/src/assets/js/lessons/lessons.js"></script>
+  <script type="module" src="/src/assets/js/chat/chat.js"></script>
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+</body>
+
+</html>

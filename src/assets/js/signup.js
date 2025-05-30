@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
       );
 
       alert("Account created successfully!");
-      window.location.href = "/src/pages/user.html";
+      window.location.href = "/src/users/client.html";
     } catch (error) {
       alert("Signup failed: " + error.message);
     }

@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UDM Student Buddy Dashboard</title>
+  <link rel="stylesheet" href="/src/assets/css/styles.css" />
+  <link rel="stylesheet" href="../assets/css/admin.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+
+<body>
+  <div class="dashboard">
+
+    <aside class="flex flex-col w-64 h-screen px-5 py-8 overflow-y-auto bg-white border-r">
+      <a href="#" class="flex justify-center items-center">
+        <img class="w-auto h-20" src="/src/assets/imgs/dm.png" alt="">
+      </a>
+
+      <div class="flex flex-col justify-between flex-1 mt-6">
+        <nav class="flex-1 -mx-3 space-y-3">
+
+          <a class="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700"
+            href="#Dashboard">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <g fill="none" stroke="currentColor" stroke-width="1">
+                <circle cx="19" cy="5" r="2.5" stroke-width="1.5" />
+                <path stroke-linecap="round" stroke-width="1.5"
+                  d="M21.25 10v5.25a6 6 0 0 1-6 6h-6.5a6 6 0 0 1-6-6v-6.5a6 6 0 0 1 6-6H14" />
+                <path stroke-linecap="round" stroke-width="1.6"
+                  d="M8.276 16.036v-4.388m3.83 4.388V8.769m3.618 7.267v-5.51" />
+              </g>
+            </svg>
+            <span class="mx-2 text-sm font-medium">Dashboard</span>
+          </a>
+          <a class="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700"
+            href="#Lessons">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path fill="currentColor"
+                d="M7.333 5.5a2.25 2.25 0 0 1 2.25-2.25h1.583a2.25 2.25 0 0 1 2.25 2.196c.227-.175.492-.308.786-.387l2.253-.604a2.25 2.25 0 0 1 2.756 1.591L21.93 16.19a2.25 2.25 0 0 1-1.591 2.755l-2.254.604a2.25 2.25 0 0 1-2.756-1.59l-1.912-7.136v6.428a2.25 2.25 0 0 1-2.25 2.25H9.583a2.24 2.24 0 0 1-1.5-.573a2.24 2.24 0 0 1-1.5.573H4.25A2.25 2.25 0 0 1 2 17.25v-9.5A2.25 2.25 0 0 1 4.25 5.5h2.333c.263 0 .516.045.75.128zm0 11.75V7.728A.75.75 0 0 0 6.583 7H4.25a.75.75 0 0 0-.75.75v9.5c0 .414.336.75.75.75h2.333a.75.75 0 0 0 .75-.73zm2.25.75h1.583a.75.75 0 0 0 .75-.75V5.5a.75.75 0 0 0-.75-.75H9.583a.75.75 0 0 0-.75.75v11.77a.75.75 0 0 0 .75.73M14.06 7.427l2.717 10.142a.75.75 0 0 0 .919.53l2.253-.604a.75.75 0 0 0 .53-.918L17.763 6.435a.75.75 0 0 0-.918-.53l-2.254.603a.75.75 0 0 0-.53.919" />
+            </svg>
+            <span class="mx-2 text-sm font-medium">Lessons</span>
+          </a>
+
+          <a class="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700"
+            href="#Events">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                d="M15 4V2m0 2v2m0-2h-4.5M3 10v9a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-9zm0 0V6a2 2 0 0 1 2-2h2m0-2v4m14 4V6a2 2 0 0 0-2-2h-.5" />
+            </svg>
+            <span class="mx-2 text-sm font-medium">Events</span>
+          </a>
+
+          <!-- Continue with the same structure for: Projects, Tasks, Reporting, Users, Settings -->
+
+        </nav>
+
+        <div class=" flex justify-around bg-gray-100 border-2 hover:bg-gray-200 items-center shadow-2xl rounded-2xl ">
+
+          <div class="flex items-center justify-around py-2  space-x-20">
+            <a href="#profile" class="flex items-center gap-x-2">
+
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 28 28">
+                <path fill="currentColor"
+                  d="M21 16a3 3 0 0 1 3 3v.715C24 23.292 19.79 26 14 26S4 23.433 4 19.715V19a3 3 0 0 1 3-3zm0 1.5H7a1.5 1.5 0 0 0-1.493 1.355L5.5 19v.715c0 2.674 3.389 4.785 8.5 4.785c4.926 0 8.355-2.105 8.496-4.624l.004-.161V19a1.5 1.5 0 0 0-1.355-1.493zM14 2a6 6 0 1 1 0 12a6 6 0 0 1 0-12m0 1.5a4.5 4.5 0 1 0 0 9a4.5 4.5 0 0 0 0-9" />
+              </svg>
+              <span class="text-sm font-medium text-gray-700">
+                <h1>Admin</h1>
+              </span>
+            </a>
+
+            <a href="/"
+              class="text-gray-500 border-2 bg-gray-300 rounded-xl p-2 transition-colors duration-200 rotate-180 hover:text-blue-500">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5">
+                  <path stroke-linejoin="round" d="M15 12H6m0 0l2 2m-2-2l2-2" />
+                  <path
+                    d="M12 21.983c-1.553-.047-2.48-.22-3.121-.862c-.769-.768-.865-1.946-.877-4.121M16 21.998c2.175-.012 3.353-.108 4.121-.877C21 20.243 21 18.828 21 16V8c0-2.828 0-4.243-.879-5.121C19.243 2 17.828 2 15 2h-1c-2.828 0-4.243 0-5.121.879c-.769.768-.865 1.946-.877 4.121M3 9.5v5c0 2.357 0 3.535.732 4.268S5.643 19.5 8 19.5M3.732 5.232C4.464 4.5 5.643 4.5 8 4.5" />
+                </g>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+
+    <main class="main">
+      <header class="rounded-2xl flex items-center justify-between w-full bg-white px-2 py-2 ">
+        <h1>Welcome, Admin!</h1>
+        <a href="https://discord.gg/pp6CMSpr" target="_blank"
+          class="bg-[#daa92b] shadow-md border p-2 rounded-xl">Studdy Lobby</a>
+      </header>
+
+
+      <!-- Dashboard Section with Analytics -->
+      <section id="dashboard" class="content section h-screen">
+        <!-- <h2 class="text-2xl font-semibold mb-4">📊 Dashboard Overview</h2> -->
+
+        <!-- Grid Container -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <!-- Card 1 -->
+
+          <div class="p-6 bg-white rounded shadow text-center">
+            <h3 class="text-xl font-bold text-[#daa92b]">New Students</h3>
+            <p id="totalStudents" class="text-3xl font-semibold text-gray-800">0</p>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="bg-white p-4 shadow-lg rounded-lg">
+            <h3 class="text-lg font-semibold mb-2 text-[#daa92b]">Upcoming Events</h3>
+            <p class="text-gray-600 text-sm">2 events are coming up this weekend.</p>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="bg-white p-4 shadow-lg text-center rounded-lg">
+            <h3 class="text-lg font-semibold mb-2 text-[#daa92b]">Total Admin Login</h3>
+            <p class="text-gray-600 text-3xl"><strong id="adminLoginCount">5</strong></p>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="bg-white p-4 shadow-lg text-center rounded-lg">
+            <h3 class="text-lg font-semibold mb-2 text-[#daa92b]">Total User Login</h3>
+            <p class="text-gray-600 text-3xl"><strong id="userLoginCount">245</strong></p>
+          </div>
+
+          <!-- Additional Analytics -->
+          <div class="grid grid-cols-1 md:grid-cols-2 col-span-4 gap-6">
+            <!-- Line Chart Placeholder -->
+            <div class="bg-white p-6 shadow-lg rounded-lg">
+              <h3 class="text-lg font-semibold mb-4">Activity Trends</h3>
+              <div class="w-full h-64 bg-gray-100 flex items-center justify-center text-gray-400">
+                <canvas id="loginChart" class="w-full h-full rounded-xl"></canvas>
+
+              </div>
+            </div>
+
+            <!-- Pie Chart Placeholder -->
+            <!-- User Login History Table -->
+            <section class="bg-white  p-6 shadow-lg rounded-lg">
+              <h2 class="text-lg font-bold mb-4 text-[#daa92b]">User Login History</h2>
+              <div class="overflow-x-auto h-64 bg-white rounded-lg shadow">
+                <table class="min-w-full text-sm text-left text-gray-700">
+                  <thead class="bg-[#daa92b] text-white uppercase sticky top-0 text-xs">
+                    <tr>
+                      <th class="px-4 py-3">Name</th>
+                      <th class="px-4 py-3">Role</th>
+                      <th class="px-4 py-3">Date</th>
+                      <th class="px-4 py-3">Time</th>
+                    </tr>
+                  </thead>
+                  <tbody id="loginHistoryBody" class="divide-y divide-gray-200">
+                    <!-- Entries will be inserted here dynamically -->
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+      </section>
+
+      <!-- Lessons Section for BSIT -->
+      <section id="Lessons" class=" content section oveflow-hidden ">
+        <div class="flex justify-between w-full">
+          <div>
+            <h2 class="text-2xl font-bold text-left mb-2">📚 BSIT Lessons</h2>
+            <p class="mb-6 text-gray-600">Select your year and semester to view the lessons and recommended books.</p>
+          </div>
+          <div class="flex flex-col justify-center  items-center">
+
+            <div class="flex flex-wrap items-center gap-4 mb-6">
+              <div>
+                <label for="year" class="block text-sm font-medium">Year:</label>
+                <select id="year" onchange="updateLessons()"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                  <option value="">--Select Year--</option>
+                  <option value="1">1st Year</option>
+                  <option value="2">2nd Year</option>
+                  <option value="3">3rd Year</option>
+                  <option value="4">4th Year</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="semester" class="block text-sm font-medium">Semester:</label>
+                <select id="semester" onchange="updateLessons()"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                  <option value="">--Select Semester--</option>
+                  <option value="1">1st Semester</option>
+                  <option value="2">2nd Semester</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="overflow-hidden h-96">
+          <div id="lessons-display"
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 lg:grid-cols-5 md:grid-cols-4 gap-6 h-full pb-20 overflow-auto">
+            <!-- Lesson cards will appear here -->
+          </div>
+        </div>
+      </section>
+
+      <section id="Events" class=" section ">
+        <!-- <h2 class="text-2xl font-bold mb-4 text-center">📅 Events</h2> -->
+
+        <div class="flex w-full justify-evenly space-x-6 items-start">
+          <!-- Event Creation Form -->
+          <div class="max-w-5xl w-96 bg-white p-6 rounded-lg shadow">
+            <h3 class="text-lg font-semibold mb-4">Create Event</h3>
+            <form id="eventForm" class="space-y-4">
+              <div>
+                <label for="eventTitle" class="block font-medium">Title</label>
+                <input type="text" id="eventTitle" class="w-full px-4 py-2 border rounded-lg" required />
+              </div>
+
+              <div>
+                <label for="eventDate" class="block font-medium">Date</label>
+                <input type="date" id="eventDate" class="w-full px-4 py-2 border rounded-lg" required />
+              </div>
+
+              <div>
+                <label for="eventLocation" class="block font-medium">Location</label>
+                <input type="text" id="eventLocation" class="w-full px-4 py-2 border rounded-lg" required />
+              </div>
+
+              <div>
+                <label for="eventDescription" class="block font-medium">Description</label>
+                <textarea id="eventDescription" rows="3" class="w-full px-4 py-2 border rounded-lg" required></textarea>
+              </div>
+
+              <button type="submit"
+                class="bg-yellow-600 hover:bg-yellow-700 text-white font-medium py-2 px-4 rounded w-full">
+                Create Event
+              </button>
+            </form>
+
+          </div>
+
+          <!-- Event List -->
+          <div class="max-w-5xl">
+            <h3 class="text-xl font-semibold mb-6">Upcoming Events</h3>
+            <div id="eventList" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <!-- Event cards go here -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <script>
+        const eventForm = document.getElementById("eventForm");
+        const eventList = document.getElementById("eventList");
+
+        let events = JSON.parse(localStorage.getItem("events")) || [];
+        let editIndex = -1; // Track if editing (index in events array)
+
+        // Initialize display on page load
+        document.addEventListener("DOMContentLoaded", () => {
+          renderEvents();
+        });
+
+        // Form submit handler
+        eventForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+
+          const title = document.getElementById("eventTitle").value.trim();
+          const date = document.getElementById("eventDate").value;
+          const location = document.getElementById("eventLocation").value.trim();
+          const description = document.getElementById("eventDescription").value.trim();
+
+          if (!title || !date || !location || !description) {
+            alert("Please fill all fields.");
+            return;
+          }
+
+          const event = { title, date, location, description };
+
+          if (editIndex === -1) {
+            // Create new event
+            events.push(event);
+          } else {
+            // Update existing event
+            events[editIndex] = event;
+            editIndex = -1;
+            eventForm.querySelector("button[type=submit]").textContent = "Create Event";
+            // Remove cancel button if present
+            const cancelBtn = eventForm.querySelector("#cancelEdit");
+            if (cancelBtn) cancelBtn.remove();
+          }
+
+          saveAndRender();
+          eventForm.reset();
+        });
+
+        function saveAndRender() {
+          localStorage.setItem("events", JSON.stringify(events));
+          renderEvents();
+        }
+
+        // Render all events in the list
+        function renderEvents() {
+          eventList.innerHTML = "";
+          events.forEach((event, index) => {
+            eventList.appendChild(createEventCard(event, index));
+          });
+        }
+
+        // Create a card element for an event with Edit and Delete buttons
+        function createEventCard(event, index) {
+          const card = document.createElement("div");
+          card.className = "bg-white p-4 rounded-lg shadow hover:shadow-lg transition relative";
+
+          card.innerHTML = `
+            <h4 class="text-lg font-bold text-blue-700 mb-2">${event.title}</h4>
+            <p class="text-sm text-gray-500 mb-1">📅 ${event.date}</p>
+            <p class="text-sm text-gray-600 mb-1">📍 ${event.location}</p>
+            <p class="text-gray-700 text-sm mb-4">${event.description}</p>
+          `;
+
+          // Edit button
+          const editBtn = document.createElement("button");
+          editBtn.textContent = "Edit";
+          editBtn.className = "absolute top-4 right-20 bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-1 rounded mr-2";
+          editBtn.addEventListener("click", () => startEdit(index));
+
+          // Delete button
+          const deleteBtn = document.createElement("button");
+          deleteBtn.textContent = "Delete";
+          deleteBtn.className = "absolute top-4 right-4 bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded";
+          deleteBtn.addEventListener("click", () => deleteEvent(index));
+
+          card.appendChild(editBtn);
+          card.appendChild(deleteBtn);
+
+          return card;
+        }
+
+        // Start editing an event: populate form and toggle buttons
+        function startEdit(index) {
+          const event = events[index];
+          document.getElementById("eventTitle").value = event.title;
+          document.getElementById("eventDate").value = event.date;
+          document.getElementById("eventLocation").value = event.location;
+          document.getElementById("eventDescription").value = event.description;
+
+          editIndex = index;
+
+          const submitBtn = eventForm.querySelector("button[type=submit]");
+          submitBtn.textContent = "Update Event";
+
+          // Add cancel button if not exists
+          if (!eventForm.querySelector("#cancelEdit")) {
+            const cancelBtn = document.createElement("button");
+            cancelBtn.type = "button";
+            cancelBtn.id = "cancelEdit";
+            cancelBtn.textContent = "Cancel";
+            cancelBtn.className = "ml-4 bg-gray-400 hover:bg-gray-500 text-white px-4 py-2 rounded";
+            cancelBtn.addEventListener("click", cancelEdit);
+            submitBtn.after(cancelBtn);
+          }
+        }
+
+        // Cancel editing mode, reset form and buttons
+        function cancelEdit() {
+          editIndex = -1;
+          eventForm.reset();
+
+          const submitBtn = eventForm.querySelector("button[type=submit]");
+          submitBtn.textContent = "Create Event";
+
+          const cancelBtn = eventForm.querySelector("#cancelEdit");
+          if (cancelBtn) cancelBtn.remove();
+        }
+
+        // Delete event and re-render
+        function deleteEvent(index) {
+          if (confirm("Are you sure you want to delete this event?")) {
+            events.splice(index, 1);
+            saveAndRender();
+            if (editIndex === index) cancelEdit(); // If deleting the event being edited, cancel edit mode
+          }
+        }
+      </script>
+
+
+
+
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const loginHistoryBody = document.getElementById("loginHistoryBody");
+          const stored = JSON.parse(localStorage.getItem('loginHistory') || '[]');
+
+          if (!loginHistoryBody) return;
+
+          stored.forEach(entry => {
+            const row = document.createElement("tr");
+            row.className = "hover:bg-gray-100";
+
+            row.innerHTML = `
+              <td class="px-4 py-3">${entry.name}</td>
+              <td class="px-4 py-3 font-medium ${entry.role === 'Admin' ? 'text-red-600' : 'text-blue-600'}">${entry.role}</td>
+              <td class="px-4 py-3">${entry.date}</td>
+              <td class="px-4 py-3">${entry.time}</td>
+            `;
+            loginHistoryBody.appendChild(row);
+          });
+        });
+      </script>
+
+      <script>
+        const lessonData = {
+          '1-1': Array.from({ length: 10 }, (_, i) => ({
+            title: `1st Year - 1st Sem Topic ${i + 1}`,
+            video: "https://www.youtube.com/embed/Wq8U2aDM3_0",
+            book: "https://example.com/books/sample.pdf"
+          })),
+          '1-2': Array.from({ length: 10 }, (_, i) => ({
+            title: `1st Year - 2nd Sem Topic ${i + 1}`,
+            video: "https://www.youtube.com/embed/eIrMbAQSU34",
+            book: "https://example.com/books/sample.pdf"
+          })),
+          '2-1': Array.from({ length: 10 }, (_, i) => ({
+            title: `2nd Year - 1st Sem Topic ${i + 1}`,
+            video: "https://www.youtube.com/embed/pQN-pnXPaVg",
+            book: "https://example.com/books/sample.pdf"
+          })),
+          '2-2': Array.from({ length: 10 }, (_, i) => ({
+            title: `2nd Year - 2nd Sem Topic ${i + 1}`,
+            video: "https://www.youtube.com/embed/KGkiIBTq0y0",
+            book: "https://example.com/books/sample.pdf"
+          })),
+          '3-1': Array.from({ length: 10 }, (_, i) => ({
+            title: `3rd Year - 1st Sem Topic ${i + 1}`,
+            video: "https://www.youtube.com/embed/Fdf5aTYRW0E",
+            book: "https://example.com/books/sample.pdf"
+          })),
+          '3-2': Array.from({ length: 10 }, (_, i) => ({
+            title: `3rd Year - 2nd Sem Topic ${i + 1}`,
+            video: "https://www.youtube.com/embed/2ePf9rue1Ao",
+            book: "https://example.com/books/sample.pdf"
+          })),
+          '4-1': Array.from({ length: 10 }, (_, i) => ({
+            title: `4th Year - 1st Sem Topic ${i + 1}`,
+            video: "https://www.youtube.com/embed/SJ0W9LJ9RQg",
+            book: "https://example.com/books/sample.pdf"
+          })),
+          '4-2': Array.from({ length: 10 }, (_, i) => ({
+            title: `4th Year - 2nd Sem Topic ${i + 1}`,
+            video: "https://www.youtube.com/embed/vsQ3XJXKD5Y",
+            book: "https://example.com/books/sample.pdf"
+          }))
+        };
+
+        function updateLessons() {
+          const year = document.getElementById("year").value;
+          const sem = document.getElementById("semester").value;
+          const key = `${year}-${sem}`;
+          const display = document.getElementById("lessons-display");
+
+          if (!lessonData[key]) {
+            display.innerHTML = "<p>Please select a valid year and semester.</p>";
+            return;
+          }
+
+          display.innerHTML = lessonData[key].map(lesson => `
+      <div class="lesson-card">
+        <h4>${lesson.title}</h4>
+        <iframe src="${lesson.video}" frameborder="0" allowfullscreen></iframe>
+        <p><strong>📘 Recommended Book:</strong> <a href="${lesson.book}" target="_blank">Download / View</a></p>
+      </div>
+    `).join('');
+        }
+      </script>
+
+      <!-- Events -->
+      <section id="events" class="content section">
+        <h2>📅 Events</h2>
+        <p>Stay updated with student events and meetups on and off campus!</p>
+      </section>
+
+      <!-- Profile -->
+      <section id="profile" class="content section">
+        <h2>👤 My Profile</h2>
+        <div class="profile-info">
+          <p><strong>Name:</strong> <span id="profileName">Loading...</span></p>
+          <p><strong>Program:</strong> <span id="profileCourse">Loading...</span></p>
+          <p><strong>Year:</strong> <span id="profileYear">Loading...</span></p>
+          <p><strong>Email:</strong> <span id="profileEmail">Loading...</span></p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+      if (!currentUser || currentUser.role !== "User") {
+        alert("You must be signed in to view this page.");
+        window.location.href = "/src/auth/signin.html";
+      } else {
+        document.getElementById("userName").textContent = currentUser.name || "User";
+      }
+    });
+  </script>
+
+  <script type="module">
+    document.addEventListener("DOMContentLoaded", () => {
+      const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+      if (!currentUser) {
+        alert("You must be logged in to view this page.");
+        window.location.href = "/src/auth/signin.html";
+        return;
+      }
+
+      // Optional: Check role (only for admin.html)
+      if (window.location.pathname.includes("admin.html") && currentUser.role !== "admin") {
+        alert("Unauthorized. Admins only.");
+        window.location.href = "/src/auth/signin.html";
+        return;
+      }
+
+      // Optional: Display user name or email somewhere
+      const userInfoEl = document.getElementById("userInfo");
+      if (userInfoEl) {
+        userInfoEl.textContent = `Welcome, ${currentUser.name} (${currentUser.role})`;
+      }
+
+      // Optional: Logout button
+      const logoutBtn = document.getElementById("logoutBtn");
+      if (logoutBtn) {
+        logoutBtn.addEventListener("click", () => {
+          localStorage.removeItem("currentUser");
+          firebase.auth().signOut().then(() => {
+            window.location.href = "/src/auth/signin.html";
+          });
+        });
+      }
+    });
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const container = document.getElementById("studentsContainer");
+
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+
+      const students = users.filter(user => user.role === "student");
+
+      // Clear existing
+      container.innerHTML = "";
+
+      // Render each student card
+      students.forEach(student => {
+        const card = document.createElement("div");
+        card.className = "p-4 bg-white shadow rounded mb-4";
+
+        card.innerHTML = `
+          <h2 class="text-lg font-bold text-[#daa92b]">${student.fullName}</h2>
+          <p><strong>Course:</strong> ${student.course}</p>
+          <p><strong>Year:</strong> ${student.year}</p>
+          <p><strong>Email:</strong> ${student.email}</p>
+        `;
+
+        container.appendChild(card);
+      });
+    });
+  </script>
+
+
+  <script>
+    if (!localStorage.getItem('email')) {
+      alert("Please sign in first.");
+      window.location.href = "signin.html";
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const savedUser = JSON.parse(localStorage.getItem("user"));
+      if (savedUser) {
+        document.getElementById("profileName").textContent = savedUser.fullName;
+        document.getElementById("profileCourse").textContent = savedUser.course;
+        document.getElementById("profileYear").textContent = savedUser.year;
+        document.getElementById("profileEmail").textContent = savedUser.email;
+
+        const greeting = document.querySelector(".topbar h1");
+        if (greeting && savedUser.fullName) {
+          greeting.textContent = `Welcome, ${savedUser.fullName}`;
+        }
+      }
+    });
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const savedUser = JSON.parse(localStorage.getItem("user"));
+      if (savedUser) {
+        document.getElementById("profileName").textContent = savedUser.fullName;
+        document.getElementById("profileCourse").textContent = savedUser.course;
+        document.getElementById("profileYear").textContent = savedUser.year;
+        document.getElementById("profileEmail").textContent = savedUser.email;
+
+        const greeting = document.querySelector(".profile h1");
+        if (greeting && savedUser.fullName) {
+          greeting.textContent = ` ${savedUser.fullName}`;
+        }
+      }
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const loginHistoryBody = document.getElementById("loginHistoryBody");
+      const stored = JSON.parse(localStorage.getItem('loginHistory') || '[]');
+
+      if (!loginHistoryBody) return;
+
+      // Clear existing table rows (if needed)
+      loginHistoryBody.innerHTML = "";
+
+      let adminCount = 0;
+      let userCount = 0;
+
+      stored.forEach(entry => {
+        // Append row to table
+        const row = document.createElement("tr");
+        row.className = "hover:bg-gray-100";
+
+        row.innerHTML = `
+          <td class="px-4 py-3">${entry.name}</td>
+          <td class="px-4 py-3 font-medium ${entry.role === 'Admin' ? 'text-red-600' : 'text-blue-600'}">${entry.role}</td>
+          <td class="px-4 py-3">${entry.date}</td>
+          <td class="px-4 py-3">${entry.time}</td>
+        `;
+        loginHistoryBody.appendChild(row);
+
+        // Count admin vs users
+        if (entry.role === 'Admin') {
+          adminCount++;
+        } else {
+          userCount++;
+        }
+      });
+
+      // Update the dashboard cards with counts
+      // Find the cards by text or assign IDs to them first for easier targeting
+
+      // For demo: let's add IDs to the relevant cards in your HTML:
+      // Card 3 (Total Admin Login): <p> ... <strong id="adminLoginCount">5</strong> ... </p>
+      // Card 4 (Total User Login): <p> ... <strong id="userLoginCount">245</strong> ... </p>
+
+      const adminLoginCountElem = document.getElementById("adminLoginCount");
+      const userLoginCountElem = document.getElementById("userLoginCount");
+
+      if (adminLoginCountElem) adminLoginCountElem.textContent = adminCount;
+      if (userLoginCountElem) userLoginCountElem.textContent = userCount;
+
+      // Optionally, you can add a total login card or somewhere else
+      const totalLoginCount = adminCount + userCount;
+      console.log(`Total logins: ${totalLoginCount}`);
+    });
+
+
+
+    // Sidebar toggle
+    document.getElementById("menu-toggle").addEventListener("click", () => {
+      document.getElementById("sidebar").classList.toggle("active");
+    });
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const stored = JSON.parse(localStorage.getItem('loginHistory') || '[]');
+
+      // Count roles
+      const roleCounts = stored.reduce((acc, entry) => {
+        const role = entry.role || 'Unknown';
+        acc[role] = (acc[role] || 0) + 1;
+        return acc;
+      }, {});
+
+      // Prepare chart data
+      const ctx = document.getElementById('loginChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: Object.keys(roleCounts),
+          datasets: [{
+            label: 'Login Count',
+            data: Object.values(roleCounts),
+            backgroundColor: ['#f87171', '#60a5fa'],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: 'Number of Logins'
+              }
+            }
+          }
+        }
+      });
+    });
+  </script>
+
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+      if (!currentUser || currentUser.role !== "admin") {
+        alert("Access denied. Admins only.");
+        window.location.href = "/src/auth/signin.html";
+      }
+    });
+  </script>
+</body>
+
+</html>

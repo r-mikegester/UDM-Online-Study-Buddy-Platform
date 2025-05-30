@@ -5,132 +5,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>UDM Student Buddy Dashboard</title>
-  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="/src/assets/css/styles.css" />
+  <link rel="stylesheet" href="../assets/css/admin.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 </head>
-<style>
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    display: flex;
-    height: 100vh;
-    overflow: hidden;
-  }
-
-  .dashboard {
-    display: flex;
-    width: 100%;
-  }
-
-  .sidebar {
-
-    color: white;
-    width: 250px;
-    padding: 20px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    transition: transform 0.3s ease;
-    z-index: 999;
-  }
-
-  .sidebar nav ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  .sidebar nav ul li {
-    margin: 15px 0;
-  }
-
-  .sidebar nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.1em;
-  }
-
-  .main {
-    padding: 20px;
-    flex: 1;
-    overflow-y: auto;
-  }
-
-  .topbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .avatar {
-    border-radius: 50%;
-  }
-
-  .hamburger {
-    display: none;
-    font-size: 1.8em;
-    cursor: pointer;
-    background: none;
-    border: none;
-    color: #2c3e50;
-    position: fixed;
-    top: 15px;
-    left: 15px;
-    z-index: 1000;
-  }
-
-  @media (max-width: 768px) {
-    .sidebar {
-      transform: translateX(-100%);
-    }
-
-    .sidebar.active {
-      transform: translateX(0);
-    }
-
-    .main {
-      margin-left: 0;
-      padding-top: 60px;
-    }
-
-    .hamburger {
-      display: block;
-    }
-  }
-
-  .card-container {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .card {
-    background: #f4f4f4;
-    padding: 1rem;
-    border-radius: 8px;
-    flex: 1;
-    min-width: 200px;
-  }
-
-
-  .list {
-    padding-left: 1rem;
-  }
-</style>
-
 <body>
   <div class="dashboard">
-
     <aside class="flex flex-col w-64 h-screen px-5 py-8 overflow-y-auto bg-white border-r">
       <a href="#" class="flex justify-center items-center">
         <img class="w-auto h-20" src="/src/assets/imgs/dm.png" alt="">
       </a>
-
       <div class="flex flex-col justify-between flex-1 mt-6">
         <nav class="flex-1 -mx-3 space-y-3">
-
           <a class="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700"
             href="#Dashboard">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -161,9 +48,6 @@
             </svg>
             <span class="mx-2 text-sm font-medium">Events</span>
           </a>
-
-          <!-- Continue with the same structure for: Projects, Tasks, Reporting, Users, Settings -->
-
         </nav>
 
         <div class=" flex justify-around bg-gray-100 border-2 hover:bg-gray-200 items-center shadow-2xl rounded-2xl ">
@@ -194,18 +78,16 @@
         </div>
       </div>
     </aside>
-
-
     <main class="main">
       <header class="rounded-2xl flex items-center justify-between w-full bg-white px-2 py-2 ">
         <h1>Welcome, Admin!</h1>
+        <span id="adminName" class="font-semibold text-base text-white"></span>
         <a href="https://discord.gg/pp6CMSpr" target="_blank"
           class="bg-[#daa92b] shadow-md border p-2 rounded-xl">Studdy Lobby</a>
+
       </header>
-
-
       <!-- Dashboard Section with Analytics -->
-      <section id="dashboard" class="content section h-screen">
+      <section id="Dashboard" class="content section h-screen">
         <!-- <h2 class="text-2xl font-semibold mb-4">📊 Dashboard Overview</h2> -->
 
         <!-- Grid Container -->
@@ -268,7 +150,6 @@
             </section>
           </div>
       </section>
-
       <!-- Lessons Section for BSIT -->
       <section id="Lessons" class=" content section oveflow-hidden ">
         <div class="flex justify-between w-full">
@@ -311,7 +192,7 @@
           </div>
         </div>
       </section>
-
+      <!--Events-->
       <section id="Events" class=" section ">
         <!-- <h2 class="text-2xl font-bold mb-4 text-center">📅 Events</h2> -->
 
@@ -357,268 +238,6 @@
           </div>
         </div>
       </section>
-
-
-
-      <style>
-        .scroll-box {
-          max-height: 500px;
-          overflow-y: scroll;
-          margin-top: 20px;
-          padding-right: 10px;
-          border: 1px solid #ccc;
-          padding: 10px;
-          border-radius: 8px;
-          background: #fafafa;
-        }
-
-        .lesson-card {
-
-
-          padding-bottom: 20px;
-        }
-
-        .lesson-card h4 {
-          margin-bottom: 10px;
-        }
-
-        .lesson-card iframe {
-          width: 100%;
-          height: 240px;
-          border-radius: 8px;
-        }
-      </style>
-      <script>
-        const eventForm = document.getElementById("eventForm");
-        const eventList = document.getElementById("eventList");
-      
-        let events = JSON.parse(localStorage.getItem("events")) || [];
-        let editIndex = -1; // Track if editing (index in events array)
-      
-        // Initialize display on page load
-        document.addEventListener("DOMContentLoaded", () => {
-          renderEvents();
-        });
-      
-        // Form submit handler
-        eventForm.addEventListener("submit", (e) => {
-          e.preventDefault();
-      
-          const title = document.getElementById("eventTitle").value.trim();
-          const date = document.getElementById("eventDate").value;
-          const location = document.getElementById("eventLocation").value.trim();
-          const description = document.getElementById("eventDescription").value.trim();
-      
-          if (!title || !date || !location || !description) {
-            alert("Please fill all fields.");
-            return;
-          }
-      
-          const event = { title, date, location, description };
-      
-          if (editIndex === -1) {
-            // Create new event
-            events.push(event);
-          } else {
-            // Update existing event
-            events[editIndex] = event;
-            editIndex = -1;
-            eventForm.querySelector("button[type=submit]").textContent = "Create Event";
-            // Remove cancel button if present
-            const cancelBtn = eventForm.querySelector("#cancelEdit");
-            if (cancelBtn) cancelBtn.remove();
-          }
-      
-          saveAndRender();
-          eventForm.reset();
-        });
-      
-        function saveAndRender() {
-          localStorage.setItem("events", JSON.stringify(events));
-          renderEvents();
-        }
-      
-        // Render all events in the list
-        function renderEvents() {
-          eventList.innerHTML = "";
-          events.forEach((event, index) => {
-            eventList.appendChild(createEventCard(event, index));
-          });
-        }
-      
-        // Create a card element for an event with Edit and Delete buttons
-        function createEventCard(event, index) {
-          const card = document.createElement("div");
-          card.className = "bg-white p-4 rounded-lg shadow hover:shadow-lg transition relative";
-      
-          card.innerHTML = `
-            <h4 class="text-lg font-bold text-blue-700 mb-2">${event.title}</h4>
-            <p class="text-sm text-gray-500 mb-1">📅 ${event.date}</p>
-            <p class="text-sm text-gray-600 mb-1">📍 ${event.location}</p>
-            <p class="text-gray-700 text-sm mb-4">${event.description}</p>
-          `;
-      
-          // Edit button
-          const editBtn = document.createElement("button");
-          editBtn.textContent = "Edit";
-          editBtn.className = "absolute top-4 right-20 bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-1 rounded mr-2";
-          editBtn.addEventListener("click", () => startEdit(index));
-      
-          // Delete button
-          const deleteBtn = document.createElement("button");
-          deleteBtn.textContent = "Delete";
-          deleteBtn.className = "absolute top-4 right-4 bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded";
-          deleteBtn.addEventListener("click", () => deleteEvent(index));
-      
-          card.appendChild(editBtn);
-          card.appendChild(deleteBtn);
-      
-          return card;
-        }
-      
-        // Start editing an event: populate form and toggle buttons
-        function startEdit(index) {
-          const event = events[index];
-          document.getElementById("eventTitle").value = event.title;
-          document.getElementById("eventDate").value = event.date;
-          document.getElementById("eventLocation").value = event.location;
-          document.getElementById("eventDescription").value = event.description;
-      
-          editIndex = index;
-      
-          const submitBtn = eventForm.querySelector("button[type=submit]");
-          submitBtn.textContent = "Update Event";
-      
-          // Add cancel button if not exists
-          if (!eventForm.querySelector("#cancelEdit")) {
-            const cancelBtn = document.createElement("button");
-            cancelBtn.type = "button";
-            cancelBtn.id = "cancelEdit";
-            cancelBtn.textContent = "Cancel";
-            cancelBtn.className = "ml-4 bg-gray-400 hover:bg-gray-500 text-white px-4 py-2 rounded";
-            cancelBtn.addEventListener("click", cancelEdit);
-            submitBtn.after(cancelBtn);
-          }
-        }
-      
-        // Cancel editing mode, reset form and buttons
-        function cancelEdit() {
-          editIndex = -1;
-          eventForm.reset();
-      
-          const submitBtn = eventForm.querySelector("button[type=submit]");
-          submitBtn.textContent = "Create Event";
-      
-          const cancelBtn = eventForm.querySelector("#cancelEdit");
-          if (cancelBtn) cancelBtn.remove();
-        }
-      
-        // Delete event and re-render
-        function deleteEvent(index) {
-          if (confirm("Are you sure you want to delete this event?")) {
-            events.splice(index, 1);
-            saveAndRender();
-            if (editIndex === index) cancelEdit(); // If deleting the event being edited, cancel edit mode
-          }
-        }
-      </script>
-      
-      
-
-
-      <script>
-        document.addEventListener("DOMContentLoaded", function () {
-          const loginHistoryBody = document.getElementById("loginHistoryBody");
-          const stored = JSON.parse(localStorage.getItem('loginHistory') || '[]');
-
-          if (!loginHistoryBody) return;
-
-          stored.forEach(entry => {
-            const row = document.createElement("tr");
-            row.className = "hover:bg-gray-100";
-
-            row.innerHTML = `
-              <td class="px-4 py-3">${entry.name}</td>
-              <td class="px-4 py-3 font-medium ${entry.role === 'Admin' ? 'text-red-600' : 'text-blue-600'}">${entry.role}</td>
-              <td class="px-4 py-3">${entry.date}</td>
-              <td class="px-4 py-3">${entry.time}</td>
-            `;
-            loginHistoryBody.appendChild(row);
-          });
-        });
-      </script>
-
-      <script>
-        const lessonData = {
-          '1-1': Array.from({ length: 10 }, (_, i) => ({
-            title: `1st Year - 1st Sem Topic ${i + 1}`,
-            video: "https://www.youtube.com/embed/Wq8U2aDM3_0",
-            book: "https://example.com/books/sample.pdf"
-          })),
-          '1-2': Array.from({ length: 10 }, (_, i) => ({
-            title: `1st Year - 2nd Sem Topic ${i + 1}`,
-            video: "https://www.youtube.com/embed/eIrMbAQSU34",
-            book: "https://example.com/books/sample.pdf"
-          })),
-          '2-1': Array.from({ length: 10 }, (_, i) => ({
-            title: `2nd Year - 1st Sem Topic ${i + 1}`,
-            video: "https://www.youtube.com/embed/pQN-pnXPaVg",
-            book: "https://example.com/books/sample.pdf"
-          })),
-          '2-2': Array.from({ length: 10 }, (_, i) => ({
-            title: `2nd Year - 2nd Sem Topic ${i + 1}`,
-            video: "https://www.youtube.com/embed/KGkiIBTq0y0",
-            book: "https://example.com/books/sample.pdf"
-          })),
-          '3-1': Array.from({ length: 10 }, (_, i) => ({
-            title: `3rd Year - 1st Sem Topic ${i + 1}`,
-            video: "https://www.youtube.com/embed/Fdf5aTYRW0E",
-            book: "https://example.com/books/sample.pdf"
-          })),
-          '3-2': Array.from({ length: 10 }, (_, i) => ({
-            title: `3rd Year - 2nd Sem Topic ${i + 1}`,
-            video: "https://www.youtube.com/embed/2ePf9rue1Ao",
-            book: "https://example.com/books/sample.pdf"
-          })),
-          '4-1': Array.from({ length: 10 }, (_, i) => ({
-            title: `4th Year - 1st Sem Topic ${i + 1}`,
-            video: "https://www.youtube.com/embed/SJ0W9LJ9RQg",
-            book: "https://example.com/books/sample.pdf"
-          })),
-          '4-2': Array.from({ length: 10 }, (_, i) => ({
-            title: `4th Year - 2nd Sem Topic ${i + 1}`,
-            video: "https://www.youtube.com/embed/vsQ3XJXKD5Y",
-            book: "https://example.com/books/sample.pdf"
-          }))
-        };
-
-        function updateLessons() {
-          const year = document.getElementById("year").value;
-          const sem = document.getElementById("semester").value;
-          const key = `${year}-${sem}`;
-          const display = document.getElementById("lessons-display");
-
-          if (!lessonData[key]) {
-            display.innerHTML = "<p>Please select a valid year and semester.</p>";
-            return;
-          }
-
-          display.innerHTML = lessonData[key].map(lesson => `
-      <div class="lesson-card">
-        <h4>${lesson.title}</h4>
-        <iframe src="${lesson.video}" frameborder="0" allowfullscreen></iframe>
-        <p><strong>📘 Recommended Book:</strong> <a href="${lesson.book}" target="_blank">Download / View</a></p>
-      </div>
-    `).join('');
-        }
-      </script>
-
-      <!-- Events -->
-      <section id="events" class="content section">
-        <h2>📅 Events</h2>
-        <p>Stay updated with student events and meetups on and off campus!</p>
-      </section>
-
       <!-- Profile -->
       <section id="profile" class="content section">
         <h2>👤 My Profile</h2>
@@ -631,228 +250,10 @@
       </section>
     </main>
   </div>
-
-  <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-
-    if (!currentUser || currentUser.role !== "User") {
-      alert("You must be signed in to view this page.");
-      window.location.href = "/src/auth/signin.html";
-    } else {
-      document.getElementById("userName").textContent = currentUser.name || "User";
-    }
-  });
-</script>
-
-<script type="module">
-  document.addEventListener("DOMContentLoaded", () => {
-    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-
-    if (!currentUser) {
-      alert("You must be logged in to view this page.");
-      window.location.href = "/src/auth/signin.html";
-      return;
-    }
-
-    // Optional: Check role (only for admin.html)
-    if (window.location.pathname.includes("admin.html") && currentUser.role !== "admin") {
-      alert("Unauthorized. Admins only.");
-      window.location.href = "/src/auth/signin.html";
-      return;
-    }
-
-    // Optional: Display user name or email somewhere
-    const userInfoEl = document.getElementById("userInfo");
-    if (userInfoEl) {
-      userInfoEl.textContent = `Welcome, ${currentUser.name} (${currentUser.role})`;
-    }
-
-    // Optional: Logout button
-    const logoutBtn = document.getElementById("logoutBtn");
-    if (logoutBtn) {
-      logoutBtn.addEventListener("click", () => {
-        localStorage.removeItem("currentUser");
-        firebase.auth().signOut().then(() => {
-          window.location.href = "/src/auth/signin.html";
-        });
-      });
-    }
-  });
-</script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const container = document.getElementById("studentsContainer");
-
-      const users = JSON.parse(localStorage.getItem("users")) || [];
-
-      const students = users.filter(user => user.role === "student");
-
-      // Clear existing
-      container.innerHTML = "";
-
-      // Render each student card
-      students.forEach(student => {
-        const card = document.createElement("div");
-        card.className = "p-4 bg-white shadow rounded mb-4";
-
-        card.innerHTML = `
-          <h2 class="text-lg font-bold text-[#daa92b]">${student.fullName}</h2>
-          <p><strong>Course:</strong> ${student.course}</p>
-          <p><strong>Year:</strong> ${student.year}</p>
-          <p><strong>Email:</strong> ${student.email}</p>
-        `;
-
-        container.appendChild(card);
-      });
-    });
-  </script>
-
-
-  <script>
-    if (!localStorage.getItem('email')) {
-      alert("Please sign in first.");
-      window.location.href = "signin.html";
-    }
-
-    window.addEventListener("DOMContentLoaded", () => {
-      const savedUser = JSON.parse(localStorage.getItem("user"));
-      if (savedUser) {
-        document.getElementById("profileName").textContent = savedUser.fullName;
-        document.getElementById("profileCourse").textContent = savedUser.course;
-        document.getElementById("profileYear").textContent = savedUser.year;
-        document.getElementById("profileEmail").textContent = savedUser.email;
-
-        const greeting = document.querySelector(".topbar h1");
-        if (greeting && savedUser.fullName) {
-          greeting.textContent = `Welcome, ${savedUser.fullName}`;
-        }
-      }
-    });
-
-    window.addEventListener("DOMContentLoaded", () => {
-      const savedUser = JSON.parse(localStorage.getItem("user"));
-      if (savedUser) {
-        document.getElementById("profileName").textContent = savedUser.fullName;
-        document.getElementById("profileCourse").textContent = savedUser.course;
-        document.getElementById("profileYear").textContent = savedUser.year;
-        document.getElementById("profileEmail").textContent = savedUser.email;
-
-        const greeting = document.querySelector(".profile h1");
-        if (greeting && savedUser.fullName) {
-          greeting.textContent = ` ${savedUser.fullName}`;
-        }
-      }
-    });
-
-    document.addEventListener("DOMContentLoaded", function () {
-      const loginHistoryBody = document.getElementById("loginHistoryBody");
-      const stored = JSON.parse(localStorage.getItem('loginHistory') || '[]');
-
-      if (!loginHistoryBody) return;
-
-      // Clear existing table rows (if needed)
-      loginHistoryBody.innerHTML = "";
-
-      let adminCount = 0;
-      let userCount = 0;
-
-      stored.forEach(entry => {
-        // Append row to table
-        const row = document.createElement("tr");
-        row.className = "hover:bg-gray-100";
-
-        row.innerHTML = `
-          <td class="px-4 py-3">${entry.name}</td>
-          <td class="px-4 py-3 font-medium ${entry.role === 'Admin' ? 'text-red-600' : 'text-blue-600'}">${entry.role}</td>
-          <td class="px-4 py-3">${entry.date}</td>
-          <td class="px-4 py-3">${entry.time}</td>
-        `;
-        loginHistoryBody.appendChild(row);
-
-        // Count admin vs users
-        if (entry.role === 'Admin') {
-          adminCount++;
-        } else {
-          userCount++;
-        }
-      });
-
-      // Update the dashboard cards with counts
-      // Find the cards by text or assign IDs to them first for easier targeting
-
-      // For demo: let's add IDs to the relevant cards in your HTML:
-      // Card 3 (Total Admin Login): <p> ... <strong id="adminLoginCount">5</strong> ... </p>
-      // Card 4 (Total User Login): <p> ... <strong id="userLoginCount">245</strong> ... </p>
-
-      const adminLoginCountElem = document.getElementById("adminLoginCount");
-      const userLoginCountElem = document.getElementById("userLoginCount");
-
-      if (adminLoginCountElem) adminLoginCountElem.textContent = adminCount;
-      if (userLoginCountElem) userLoginCountElem.textContent = userCount;
-
-      // Optionally, you can add a total login card or somewhere else
-      const totalLoginCount = adminCount + userCount;
-      console.log(`Total logins: ${totalLoginCount}`);
-    });
-
-
-
-    // Sidebar toggle
-    document.getElementById("menu-toggle").addEventListener("click", () => {
-      document.getElementById("sidebar").classList.toggle("active");
-    });
-  </script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const stored = JSON.parse(localStorage.getItem('loginHistory') || '[]');
-
-      // Count roles
-      const roleCounts = stored.reduce((acc, entry) => {
-        const role = entry.role || 'Unknown';
-        acc[role] = (acc[role] || 0) + 1;
-        return acc;
-      }, {});
-
-      // Prepare chart data
-      const ctx = document.getElementById('loginChart').getContext('2d');
-      new Chart(ctx, {
-        type: 'pie',
-        data: {
-          labels: Object.keys(roleCounts),
-          datasets: [{
-            label: 'Login Count',
-            data: Object.values(roleCounts),
-            backgroundColor: ['#f87171', '#60a5fa'],
-            borderWidth: 1
-          }]
-        },
-        options: {
-          responsive: true,
-          scales: {
-            y: {
-              beginAtZero: true,
-              title: {
-                display: true,
-                text: 'Number of Logins'
-              }
-            }
-          }
-        }
-      });
-    });
-  </script>
-
   <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-      if (!currentUser || currentUser.role !== "admin") {
-        alert("Access denied. Admins only.");
-        window.location.href = "/src/auth/signin.html";
-      }
-    });
-  </script>
+  <script type="module" src="/src/assets/js/admin/admin.js"></script>
+  <script type="module" src="/src/assets/js/admin/admin-events.js"></script>
+  <script type="module" src="/src/assets/js/admin/admin-lessons.js"></script>
+  <script type="module" src="/src/assets/js/admin/admin-profile.js"></script>
 </body>
-
 </html>

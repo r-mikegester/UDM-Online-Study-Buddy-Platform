@@ -1,6 +1,7 @@
+import { auth } from "./firebase/firebase.js";  // Adjust the path to match your project
+import { signInWithEmailAndPassword } from "firebase/auth";
 
-import { auth } from "./firebase/firebase.js";
-   
+
 document.addEventListener("DOMContentLoaded", function () {
   const loginForm = document.getElementById('loginForm');
 
@@ -12,20 +13,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const email = document.getElementById('loginEmail').value.trim();
     const password = document.getElementById('loginPassword').value.trim();
 
-    // Admin hardcoded login
     if (email === "admin@gmail.com" && password === "6921") {
-      const adminUser = {
-        name: "Admin",
-        email: email,
-        role: "admin"
-      };
+      const adminUser = { name: "Admin", email, role: "admin" };
       localStorage.setItem("currentUser", JSON.stringify(adminUser));
-      window.location.href = "/src/pages/admin.html";
+      window.location.href = "/src/users/admin.html";
       return;
     }
 
-    // Firebase login
-    firebase.auth().signInWithEmailAndPassword(email, password)
+    signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
 
@@ -37,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
         localStorage.setItem("currentUser", JSON.stringify(userData));
-        window.location.href = "/src/pages/user.html";
+        window.location.href = "/src/users/client.html";
       })
       .catch((error) => {
         alert("Login failed: " + error.message);
