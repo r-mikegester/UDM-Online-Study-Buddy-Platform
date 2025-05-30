@@ -171,15 +171,12 @@
 
           toast("Login successful! Redirecting to dashboard...", "success");
           setTimeout(() => {
-            window.location.href = "/src/pages/user.html#dashboard";
-          }, 3000);
+            window.location.href = "/src/pages/user.html#Home";
+          }, 1000);
         } else {
           toast("Invalid email or password!", "error");
         }
       });
-    });
-    document.addEventListener("DOMContentLoaded", function () {
-      window.location.hash = "#dashboard";
     });
   </script>
 
