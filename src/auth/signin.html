@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>UDM Buddy Student Online Platform</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   <link rel="icon" href="/src/assets/imgs/dm.png" />
 </head>
 
@@ -44,8 +46,8 @@
 
         <div class="relative flex items-center mt-6">
           <span class="absolute">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mx-3 text-[#daa92b]" fill="none"
-              viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mx-3 text-[#daa92b]" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round"
                 d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
@@ -58,8 +60,8 @@
 
         <div class="relative flex items-center mt-4">
           <span class="absolute">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mx-3 text-[#daa92b]" fill="none"
-              viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mx-3 text-[#daa92b]" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round"
                 d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
             </svg>
@@ -94,26 +96,39 @@
     &copy; 2025 UDM Buddy. All rights reserved.
   </footer>
   <script>
+
+    function toast(message, type) {
+      Toastify({
+        text: message,
+        duration: 1000, // duration in milliseconds
+        close: true,
+        gravity: "top", // position: top or bottom
+        position: "right",
+        backgroundColor: type === "success" ? "green" : "red",
+        stopOnFocus: true, // Prevents dismissal while hovering over the toast
+      }).showToast();
+    }
+
     document.addEventListener("DOMContentLoaded", function () {
       const loginForm = document.getElementById('loginForm');
-  
+
       if (!loginForm) return;
-  
+
       loginForm.addEventListener('submit', function (e) {
         e.preventDefault();
-  
+
         const email = document.getElementById('loginEmail').value.trim();
         const password = document.getElementById('loginPassword').value.trim();
-  
+
         // Admin credentials (hardcoded)
         const adminEmail = "admin@gmail.com";
         const adminPassword = "6921";
-  
+
         // Get current date/time
         const now = new Date();
         const loginDate = now.toLocaleDateString();
         const loginTime = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-  
+
         // Function to log history
         function logUserLogin(name, role) {
           const newEntry = {
@@ -126,7 +141,7 @@
           stored.unshift(newEntry);
           localStorage.setItem('loginHistory', JSON.stringify(stored));
         }
-  
+
         // Admin login check
         if (email === adminEmail && password === adminPassword) {
           const adminUser = {
@@ -135,31 +150,40 @@
             role: "admin"
           };
           localStorage.setItem("currentUser", JSON.stringify(adminUser));
-  
+
           logUserLogin(adminUser.name, "Admin");
-  
-          window.location.href = "/src/pages/admin.html";
+
+          toast("Admin login successful! Redirecting...", "success");
+          setTimeout(() => {
+            window.location.href = "/src/pages/admin.html#dashboard";
+          }, 1000);
           return;
         }
-  
+
         // Student login check
         const users = JSON.parse(localStorage.getItem('users')) || [];
         const foundUser = users.find(user => user.email === email && user.password === password);
-  
+
         if (foundUser) {
           localStorage.setItem("currentUser", JSON.stringify(foundUser));
-  
+
           logUserLogin(foundUser.name || foundUser.email, "User");
-  
-          window.location.href = "/src/pages/user.html";
+
+          toast("Login successful! Redirecting to dashboard...", "success");
+          setTimeout(() => {
+            window.location.href = "/src/pages/user.html#dashboard";
+          }, 3000);
         } else {
-          alert("Invalid email or password!");
+          toast("Invalid email or password!", "error");
         }
       });
     });
+    document.addEventListener("DOMContentLoaded", function () {
+      window.location.hash = "#dashboard";
+    });
   </script>
-  
-  
+
+
 </body>
 
 </html>
