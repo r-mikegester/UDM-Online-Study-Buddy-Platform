@@ -111,48 +111,50 @@
       }).showToast();
     }
 
-    document.addEventListener("DOMContentLoaded", function () {
-      const signinForm = document.getElementById("signinForm");
-      if (!signinForm) return;
+  document.addEventListener("DOMContentLoaded", function () {
+    const signinForm = document.getElementById("signinForm");
+    if (!signinForm) return;
 
-      signinForm.addEventListener("submit", function (e) {
+    signinForm.addEventListener("submit", function (e) {
         e.preventDefault();
 
-        // Retrieve the student ID and password from the form
         const studentId = document.getElementById("signinId").value.trim();
         const password = document.getElementById("signinPassword").value.trim();
 
-        // Validate that both fields are provided
         if (!studentId || !password) {
-          toast("Please fill in all fields!", "error");
-          return;
+            toast("Please fill in all fields!", "error");
+            return;
         }
 
-        // Retrieve stored users (assumed to be saved as an array in localStorage)
+        // Default admin credentials
+        const defaultAdmin = { id: 69420, password: "admin123", role: "admin" };
+
+        // Retrieve stored users from localStorage
         const users = JSON.parse(localStorage.getItem("users")) || [];
 
-        // Convert the student ID input to a number
+        // Convert student ID to number
         const studentIdNumber = Number(studentId);
 
-        // Find the user by matching the numeric student ID and password
-        const foundUser = users.find(
-          (user) => user.id === studentIdNumber && user.password === password
-        );
+        // Check if the user is the default admin or a registered user
+        const foundUser = studentIdNumber === defaultAdmin.id && password === defaultAdmin.password
+            ? defaultAdmin 
+            : users.find(user => user.id === studentIdNumber && user.password === password);
 
         if (foundUser) {
-          // Save the current user in localStorage to use later if needed
-          localStorage.setItem("currentUser", JSON.stringify(foundUser));
-          toast("Sign in successful! Redirecting...", "success");
+            localStorage.setItem("currentUser", JSON.stringify(foundUser));
+            toast("Sign in successful! Redirecting...", "success");
 
-          // Redirect to the user dashboard after a brief delay
-          setTimeout(() => {
-            window.location.href = "/src/users/client.html#Home";
-          }, 1000);
+            setTimeout(() => {
+                const redirectPage = foundUser.role === "admin" ? "/src/users/admin.html" : "/src/users/client.html";
+                window.location.href = `${redirectPage}#Dashboard`;
+            }, 1000);
         } else {
-          toast("Invalid student ID or password!", "error");
+            toast("Invalid student ID or password!", "error");
         }
-      });
     });
+});
+
+    
   </script>
 
 

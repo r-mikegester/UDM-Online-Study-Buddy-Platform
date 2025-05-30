@@ -19,7 +19,17 @@
 
       <div class="flex flex-col justify-between flex-1 mt-6">
         <nav class="flex-1 -mx-3 space-y-3">
-
+          <a class="flex items-center px-3 py-3 text-gray-600 transition-colors bg-[#daa92b] border-[#dab96b] text-white duration-300 transform rounded-lg"
+            href="#Dashboard">
+            <svg xmlns="http://www.w3.org/2000/svg" class="animate-pulse" width="24" height="24" viewBox="0 0 24 24">
+              <path fill="currentColor"
+                d="M7.03 4.95L3.5 8.5c-3.33 3.31-3.33 8.69 0 12s8.69 3.33 12 0l6-6c1-.97 1-2.56 0-3.54c-.1-.12-.23-.23-.37-.32l.37-.39c1-.97 1-2.56 0-3.54c-.14-.16-.33-.3-.5-.41c.38-.92.21-2.02-.54-2.77c-.87-.87-2.22-.96-3.2-.28a2.517 2.517 0 0 0-3.88-.42l-2.51 2.51c-.09-.14-.2-.27-.32-.39a2.53 2.53 0 0 0-3.52 0m1.41 1.42c.2-.2.51-.2.71 0s.2.51 0 .71l-3.18 3.18a3 3 0 0 1 0 4.24l1.41 1.41a5 5 0 0 0 1.12-5.36l6.3-6.3c.2-.2.51-.2.7 0s.21.51 0 .71l-4.59 4.6l1.41 1.41l6.01-6.01c.2-.2.51-.2.71 0s.2.51 0 .71l-6.01 6.01l1.41 1.41l4.95-4.95c.2-.2.51-.2.71 0s.2.51 0 .71l-5.66 5.65l1.41 1.42l3.54-3.54c.2-.2.51-.2.71 0s.2.51 0 .71l-6 6.01c-2.54 2.54-6.65 2.54-9.19 0s-2.54-6.65 0-9.19zM23 17c0 3.31-2.69 6-6 6v-1.5c2.5 0 4.5-2 4.5-4.5zM1 7c0-3.31 2.69-6 6-6v1.5c-2.5 0-4.5 2-4.5 4.5z" />
+            </svg>
+            <span class="mx-2 text-md font-medium flex justify-between items-center space-x-3">
+              <div>Welcome!</div>
+              <div class="bg-yellow-600 p-2 rounded-xl">Admin</div>
+            </span>
+          </a>
           <a class="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700"
             href="#Dashboard">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -32,6 +42,14 @@
               </g>
             </svg>
             <span class="mx-2 text-sm font-medium">Dashboard</span>
+          </a>
+             <a class="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700"
+            href="https://discord.gg/dQNRxhDA" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path fill="currentColor"
+                d="M7.25 4A2.75 2.75 0 0 0 4.5 6.75v1.337A3.25 3.25 0 0 0 2 11.25v3a2.75 2.75 0 0 0 2.5 2.739v1.261a.75.75 0 0 0 1.5 0V17h12v1.25a.75.75 0 0 0 1.5 0v-1.261A2.75 2.75 0 0 0 22 14.25v-3a3.25 3.25 0 0 0-2.5-3.163V6.75A2.75 2.75 0 0 0 16.75 4zm12 11.5H4.75c-.69 0-1.25-.56-1.25-1.25v-3a1.75 1.75 0 1 1 3.5 0v.5c0 .414.336.75.75.75h8.5a.75.75 0 0 0 .75-.75v-.5a1.75 1.75 0 1 1 3.5 0v3c0 .69-.56 1.25-1.25 1.25M18 8.087A3.25 3.25 0 0 0 15.51 11H8.49A3.25 3.25 0 0 0 6 8.087V6.75c0-.69.56-1.25 1.25-1.25h9.5c.69 0 1.25.56 1.25 1.25z" />
+            </svg>
+            <span class="mx-2 text-sm font-medium">Lobby</span>
           </a>
           <a class="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700"
             href="#Lessons">
@@ -58,7 +76,7 @@
         <div class=" flex justify-around bg-gray-100 border-2 hover:bg-gray-200 items-center shadow-2xl rounded-2xl ">
 
           <div class="flex items-center justify-around py-2  space-x-20">
-            <a href="#profile" class="flex items-center gap-x-2">
+            <a href="#" class="flex items-center gap-x-2">
 
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 28 28">
                 <path fill="currentColor"
@@ -86,11 +104,11 @@
 
 
     <main class="main">
-      <header class="rounded-2xl flex items-center justify-between w-full bg-white px-2 py-2 ">
+      <!-- <header class="rounded-2xl flex items-center justify-between w-full bg-white px-2 py-2 ">
         <h1>Welcome, Admin!</h1>
         <a href="https://discord.gg/pp6CMSpr" target="_blank"
           class="bg-[#daa92b] shadow-md border p-2 rounded-xl">Studdy Lobby</a>
-      </header>
+      </header> -->
 
 
       <!-- Dashboard Section with Analytics -->
@@ -104,12 +122,15 @@
           <div class="p-6 bg-white rounded shadow text-center">
             <h3 class="text-xl font-bold text-[#daa92b]">New Students</h3>
             <p id="totalStudents" class="text-3xl font-semibold text-gray-800">0</p>
+
           </div>
 
           <!-- Card 2 -->
           <div class="bg-white p-4 shadow-lg rounded-lg">
             <h3 class="text-lg font-semibold mb-2 text-[#daa92b]">Upcoming Events</h3>
-            <p class="text-gray-600 text-sm">2 events are coming up this weekend.</p>
+            <p id="eventCount" class="text-gray-600 text-sm">Loading...</p>
+
+
           </div>
 
           <!-- Card 3 -->
@@ -417,6 +438,27 @@
 
       <script>
         document.addEventListener("DOMContentLoaded", function () {
+          const totalStudentsElement = document.getElementById("totalStudents"); // Target the count display
+          const users = JSON.parse(localStorage.getItem("users")) || []; // Get registered students
+
+          // Display the total number of students
+          totalStudentsElement.textContent = users.length;
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+          const userList = document.getElementById("userList"); // Target container
+          const users = JSON.parse(localStorage.getItem("users")) || [];
+
+          function renderUsers() {
+            userList.innerHTML = users.length
+              ? users.map(user => `<div class="p-4 bg-white shadow rounded"><strong>${user.name}</strong> (ID: ${user.id})</div>`).join("")
+              : "<p class='text-gray-600'>No registered students yet.</p>";
+          }
+
+          renderUsers();
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
           const loginHistoryBody = document.getElementById("loginHistoryBody");
           const stored = JSON.parse(localStorage.getItem('loginHistory') || '[]');
 
@@ -520,6 +562,54 @@
       </section>
     </main>
   </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const eventCountElement = document.getElementById("eventCount"); // Target the count display
+      const events = JSON.parse(localStorage.getItem("events")) || []; // Retrieve events
+
+      // Display the number of events dynamically
+      eventCountElement.textContent = `${events.length} event(s) coming up this weekend.`;
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const stored = JSON.parse(localStorage.getItem('loginHistory') || '[]');
+
+      // Count roles
+      const roleCounts = stored.reduce((acc, entry) => {
+        const role = entry.role || 'Unknown';
+        acc[role] = (acc[role] || 0) + 1;
+        return acc;
+      }, {});
+
+      // Prepare chart data
+      const ctx = document.getElementById('loginChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: Object.keys(roleCounts),
+          datasets: [{
+            label: 'Login Count',
+            data: Object.values(roleCounts),
+            backgroundColor: ['#f87171', '#60a5fa'],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: 'Number of Logins'
+              }
+            }
+          }
+        }
+      });
+    });
+  </script>
+
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
   <script type="module" src="../assets/js/admin.js"></script>
