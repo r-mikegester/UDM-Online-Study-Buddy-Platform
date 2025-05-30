@@ -155,7 +155,7 @@
 
           toast("Admin login successful! Redirecting...", "success");
           setTimeout(() => {
-            window.location.href = "/src/pages/admin.html#dashboard";
+            window.location.href = "/src/users/admin.html#dashboard";
           }, 1000);
           return;
         }
@@ -171,7 +171,7 @@
 
           toast("Login successful! Redirecting to dashboard...", "success");
           setTimeout(() => {
-            window.location.href = "/src/pages/user.html#Home";
+            window.location.href = "/src/users/client.html#Home";
           }, 1000);
         } else {
           toast("Invalid email or password!", "error");
