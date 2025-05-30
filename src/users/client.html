@@ -211,7 +211,7 @@
 
           <!-- Info -->
           <div>
-            <p><strong>Student ID:</strong> <span id="profileId">Loading...</span></p>
+            <p><strong>Student ID:</strong> <span id="profileId2">Loading...</span></p>
             <p><strong>Name:</strong> <span id="profileName">Loading...</span></p>
             <p><strong>Course:</strong> <span id="profileCourse">Loading...</span></p>
             <p><strong>Year:</strong> <span id="profileYear">Loading...</span></p>
@@ -292,6 +292,7 @@
 
     if (user && user.role === "student") { // Ensure only clients (students) see their profile
         document.getElementById("profileId").textContent = user.id || "N/A";
+        document.getElementById("profileId2").textContent = user.id || "N/A";
         document.getElementById("profileName").textContent = user.fullName || "N/A";
         document.getElementById("profileCourse").textContent = user.course || "Undeclared";
         document.getElementById("profileYear").textContent = user.year || "N/A";
