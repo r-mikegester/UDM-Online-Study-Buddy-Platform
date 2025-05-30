@@ -28,7 +28,7 @@
             </svg>
             <span class="mx-2 text-md font-medium flex justify-between items-center space-x-3">
               <div>Welcome!</div>
-              <div class="bg-yellow-600 p-2 rounded-xl">20-17-120</div>
+              <div class="bg-yellow-600 p-2 rounded-xl" id="profileId">Student</div>
             </span>
           </a>
           <a class="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-gray-100 hover:text-gray-700"
@@ -207,15 +207,17 @@
 
         <div class="flex items-center gap-6 bg-white p-6 rounded-lg shadow max-w-xl mx-auto">
           <!-- Avatar -->
-          <img id="userAvatar" class="w-24 h-24 rounded-full border-2 border-gray-300" alt="Avatar" />
+         <svg xmlns="http://www.w3.org/2000/svg" class="size-20" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1"><path d="m20.5 23.5l-2-7L12 15l-6.5 1.5l-2 7zM8.625 5.812L12 7.5h4.5"/><path d="M16.5 12.25L12 14l-4.5-1.75v-6L12 4.5l4.5 1.75zm-6-2.25v-.5m3 .5v-.5m.953 6.066L12 19.5l-2.453-3.934"/></g></svg>
 
           <!-- Info -->
           <div>
+            <p><strong>Student ID:</strong> <span id="profileId">Loading...</span></p>
             <p><strong>Name:</strong> <span id="profileName">Loading...</span></p>
-            <p><strong>Program:</strong> <span id="profileCourse">Loading...</span></p>
+            <p><strong>Course:</strong> <span id="profileCourse">Loading...</span></p>
             <p><strong>Year:</strong> <span id="profileYear">Loading...</span></p>
             <p><strong>Email:</strong> <span id="profileEmail">Loading...</span></p>
-          </div>
+        </div>
+
         </div>
       </section>
 
@@ -284,6 +286,21 @@
       </div>
     `).join('');
     }
+
+   document.addEventListener("DOMContentLoaded", function () {
+    const user = JSON.parse(localStorage.getItem("currentUser"));
+
+    if (user && user.role === "student") { // Ensure only clients (students) see their profile
+        document.getElementById("profileId").textContent = user.id || "N/A";
+        document.getElementById("profileName").textContent = user.fullName || "N/A";
+        document.getElementById("profileCourse").textContent = user.course || "Undeclared";
+        document.getElementById("profileYear").textContent = user.year || "N/A";
+        document.getElementById("profileEmail").textContent = user.email || "N/A";
+        document.getElementById("userAvatar").src = user.avatar || "/src/assets/default-avatar.png";
+    } else {
+        document.getElementById("profile").innerHTML = "<p class='text-gray-600'>No student profile found.</p>";
+    }
+});
   </script>
   <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
   <script type="module" src="/src/assets/js/client.js"></script>
