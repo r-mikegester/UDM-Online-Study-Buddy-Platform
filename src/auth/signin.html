@@ -141,7 +141,8 @@
             : users.find(user => user.id === studentIdNumber && user.password === password);
 
         if (foundUser) {
-            localStorage.setItem("currentUser", JSON.stringify(foundUser));
+            localStorage.setItem("currentUser", JSON.stringify(foundUser)); 
+            saveLoginHistory(foundUser); // Track login
             toast("Sign in successful! Redirecting...", "success");
 
             setTimeout(() => {
@@ -152,7 +153,31 @@
             toast("Invalid student ID or password!", "error");
         }
     });
+    if (foundUser) {
+    localStorage.setItem("currentUser", JSON.stringify(foundUser)); // Store the logged-in user
+   
+    toast("Sign in successful! Redirecting...", "success");
+    setTimeout(() => {
+        window.location.href = "/src/users/client.html#Home";
+    }, 1000);
+} else {
+    toast("Invalid student ID or password!", "error");
+}
 });
+
+function saveLoginHistory(user) {
+    const loginHistory = JSON.parse(localStorage.getItem("loginHistory")) || [];
+    const timestamp = new Date();
+
+    loginHistory.unshift({
+        name: user.fullName,
+        role: user.role,
+        date: timestamp.toLocaleDateString(),
+        time: timestamp.toLocaleTimeString()
+    });
+
+    localStorage.setItem("loginHistory", JSON.stringify(loginHistory));
+}
 
 
 

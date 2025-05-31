@@ -458,25 +458,27 @@
           renderUsers();
         });
 
-        document.addEventListener("DOMContentLoaded", function () {
-          const loginHistoryBody = document.getElementById("loginHistoryBody");
-          const stored = JSON.parse(localStorage.getItem('loginHistory') || '[]');
+       document.addEventListener("DOMContentLoaded", function () {
+    const loginHistoryBody = document.getElementById("loginHistoryBody");
+    const stored = JSON.parse(localStorage.getItem("loginHistory")) || [];
 
-          if (!loginHistoryBody) return;
+    if (!loginHistoryBody || stored.length === 0) return;
 
-          stored.forEach(entry => {
-            const row = document.createElement("tr");
-            row.className = "hover:bg-gray-100";
+    loginHistoryBody.innerHTML = ""; // Clear previous content
 
-            row.innerHTML = `
-              <td class="px-4 py-3">${entry.name}</td>
-              <td class="px-4 py-3 font-medium ${entry.role === 'Admin' ? 'text-red-600' : 'text-blue-600'}">${entry.role}</td>
-              <td class="px-4 py-3">${entry.date}</td>
-              <td class="px-4 py-3">${entry.time}</td>
-            `;
-            loginHistoryBody.appendChild(row);
-          });
-        });
+    stored.forEach(entry => {
+        const row = document.createElement("tr");
+        row.className = "hover:bg-gray-100";
+
+        row.innerHTML = `
+            <td class="px-4 py-3">${entry.name}</td>
+            <td class="px-4 py-3 font-medium ${entry.role === 'Admin' ? 'text-red-600' : 'text-blue-600'}">${entry.role}</td>
+            <td class="px-4 py-3">${entry.date}</td>
+            <td class="px-4 py-3">${entry.time}</td>
+        `;
+        loginHistoryBody.appendChild(row);
+    });
+});
       </script>
 
       <script>
